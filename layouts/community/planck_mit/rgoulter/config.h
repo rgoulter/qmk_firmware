@@ -18,3 +18,5 @@
  * tapped it.
  */
 #define TAPPING_FORCE_HOLD
+
+#define RETRO_SHIFT 200
