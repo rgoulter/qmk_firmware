@@ -1,3 +1,5 @@
 RGB_MATRIX_CUSTOM_USER = yes
 
 SRC += snake.c
+
+AUTO_SHIFT_ENABLE = yes
