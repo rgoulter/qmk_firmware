@@ -40,7 +40,7 @@ uint8_t next_cell_wraparound(uint8_t cell, char direction) {
 void move_snake(void) {
   uint8_t snake_head_cell = snake_status.snake[snake_status.snake_head_idx];
   uint8_t next_cell = next_cell_wraparound(snake_head_cell, snake_status.direction);
-  uint8_t next_snake_head_idx = (snake_status.snake_head_idx == SNAKE_LENGTH_MAX) ? 0 : snake_status.snake_head_idx + 1;
+  uint8_t next_snake_head_idx = (snake_status.snake_head_idx == SNAKE_LENGTH_MAX - 1) ? 0 : snake_status.snake_head_idx + 1;
   snake_status.snake[next_snake_head_idx] = next_cell;
   snake_status.snake_head_idx = next_snake_head_idx;
 }
