@@ -129,15 +129,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
     case SNAKE:
-      if (record->event.pressed) {
-        half_count += 1;
-      } else {
-        half_count -= 1;
-      }
-      if (half_count == 2) {
-        layer_move(_SNAKE);
-        rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_MULTISPLASH + 1);
-      }
+      layer_move(_SNAKE);
+      rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_MULTISPLASH + 1);
       return false;
       break;
   }
