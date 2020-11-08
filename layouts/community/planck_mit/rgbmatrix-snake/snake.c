@@ -1,17 +1,19 @@
 #include "snake.h"
 
 snake_status_t snake_status = {
-  .direction = DIRECTION_RIGHT,
-  .snake = { 13, 14, 15, 16 },
-  .snake_head_idx = 3,
-  .snake_length = 4,
-  .food = 20,
-  .snake_anim_counter = 750,
-  .snake_ms_per_move = 750,
 };
 
 void snake_init() {
-
+  snake_status.direction = DIRECTION_RIGHT;
+  snake_status.snake[3] = 16;
+  snake_status.snake[2] = 15;
+  snake_status.snake[1] = 14;
+  snake_status.snake[0] = 13;
+  snake_status.snake_head_idx = 3;
+  snake_status.snake_length = 4;
+  snake_status.food = 20;
+  snake_status.snake_anim_counter = 750;
+  snake_status.snake_ms_per_move = 750;
 }
 
 // wraps around automatically
