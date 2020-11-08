@@ -107,8 +107,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         quarter_count -= 1;
       }
       if (quarter_count == 4) {
-        register_code(KC_X);
-        unregister_code(KC_X);
+        reset_keyboard();
       }
       return false;
       break;
