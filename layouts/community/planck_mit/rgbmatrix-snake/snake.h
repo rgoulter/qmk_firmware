@@ -11,6 +11,8 @@
 
 #define SNAKE_LENGTH_MAX 48
 
+#define SNAKE_MS_PER_MOVE_MIN 80
+
 // Number of columns on the grid.
 // Planck-MIT layout has 12 columns.
 #define SNAKE_GRID_WIDTH 12
@@ -26,6 +28,7 @@ typedef struct _snake_status_t {
   uint8_t snake_head_idx;
   uint8_t snake_length;
   uint8_t food;
+  uint8_t score;
   // when to 'move' the snake
   uint32_t snake_anim_counter;
   // how many ms to add to each counter

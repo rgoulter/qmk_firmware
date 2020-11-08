@@ -1,5 +1,9 @@
 #include "snake.h"
 
+#include <stdlib.h>
+
+#include "timer.h"
+
 snake_status_t snake_status = {
 };
 
@@ -12,8 +16,11 @@ void snake_init() {
   snake_status.snake_head_idx = 3;
   snake_status.snake_length = 4;
   snake_status.food = 20;
-  snake_status.snake_anim_counter = 750;
-  snake_status.snake_ms_per_move = 750;
+  snake_status.score = 0;
+  snake_status.snake_anim_counter = 300;
+  snake_status.snake_ms_per_move = 300;
+
+  srand(timer_read32());
 }
 
 // wraps around automatically
@@ -39,12 +46,63 @@ uint8_t next_cell_wraparound(uint8_t cell, char direction) {
   return (next_row * SNAKE_GRID_WIDTH) + next_col;
 }
 
+void game_over(void) {
+  // just start the game again
+  snake_init();
+}
+
+
+bool collides_with_snake(uint8_t cell) {
+  uint8_t snake_head_idx = snake_status.snake_head_idx;
+  for (uint8_t i = 0; i < snake_status.snake_length; i++) {
+    uint8_t snake_idx = (snake_head_idx >= i) ? snake_head_idx - i : SNAKE_LENGTH_MAX - (i - snake_head_idx);
+    uint8_t snake_cell = snake_status.snake[snake_idx];
+
+    if (snake_cell == cell) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+bool collides_with_food(uint8_t cell) {
+  return snake_status.food == cell;
+}
+
+// moves the food to a new location (avoids colliding with snake)
+//
+// noop if snake is its max length (or longer)
+void change_food(void) {
+  if (snake_status.snake_length >= SNAKE_LENGTH_MAX) {
+    return;
+  }
+  uint8_t food = rand() % (SNAKE_GRID_HEIGHT * SNAKE_GRID_WIDTH);
+  while (collides_with_snake(food)) {
+    food--;
+  }
+  snake_status.food = food;
+}
+
 void move_snake(void) {
   uint8_t snake_head_cell = snake_status.snake[snake_status.snake_head_idx];
   uint8_t next_cell = next_cell_wraparound(snake_head_cell, snake_status.direction);
-  uint8_t next_snake_head_idx = (snake_status.snake_head_idx == SNAKE_LENGTH_MAX - 1) ? 0 : snake_status.snake_head_idx + 1;
-  snake_status.snake[next_snake_head_idx] = next_cell;
-  snake_status.snake_head_idx = next_snake_head_idx;
+  if (collides_with_snake(next_cell)) {
+    game_over();
+  } else {
+    if (collides_with_food(next_cell) && snake_status.snake_length < SNAKE_LENGTH_MAX) {
+      snake_status.snake_length++;
+      snake_status.score++;
+      uint8_t delta_ms = 10 * snake_status.score;
+      snake_status.snake_ms_per_move = (snake_status.snake_ms_per_move > SNAKE_MS_PER_MOVE_MIN + delta_ms) ?
+        snake_status.snake_ms_per_move - delta_ms :
+        SNAKE_MS_PER_MOVE_MIN;
+      change_food();
+    }
+    uint8_t next_snake_head_idx = (snake_status.snake_head_idx == SNAKE_LENGTH_MAX - 1) ? 0 : snake_status.snake_head_idx + 1;
+    snake_status.snake[next_snake_head_idx] = next_cell;
+    snake_status.snake_head_idx = next_snake_head_idx;
+  }
 }
 
 // assuming plank_mit layout has per-key RGB layout
@@ -67,15 +125,20 @@ void update_bitmap_from_cell(RGB bitmap[47], uint8_t cell, RGB color) {
 }
 
 void render_to_bitmap(RGB bitmap[47]) {
+  // snake
   uint8_t snake_head_idx = snake_status.snake_head_idx;
   for (uint8_t i = 0; i < snake_status.snake_length; i++) {
     uint8_t snake_idx = (snake_head_idx >= i) ? snake_head_idx - i : SNAKE_LENGTH_MAX - (i - snake_head_idx);
-    uint8_t cell = snake_status.snake[snake_idx];
+    uint8_t snake_cell = snake_status.snake[snake_idx];
     uint8_t hue = 0xF0 / snake_status.snake_length * i;
     HSV snake_color_hsv = { hue, 0xFF, 0xFF };
     RGB snake_color = hsv_to_rgb(snake_color_hsv);
-    update_bitmap_from_cell(bitmap, cell, snake_color);
+    update_bitmap_from_cell(bitmap, snake_cell, snake_color);
   }
+
+  // food
+  RGB food_color = {0xFF, 0xFF, 0}; // bgr
+  update_bitmap_from_cell(bitmap, snake_status.food, food_color);
 }
 
 void snake_update(uint32_t delta_time, RGB bitmap[47]) {
