@@ -78,19 +78,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case DIRUP:
-      snake_status.direction = DIRECTION_UP;
+      if (snake_status.direction != DIRECTION_DOWN) {
+        snake_status.direction = DIRECTION_UP;
+      }
       return false;
       break;
     case DIRDOWN:
-      snake_status.direction = DIRECTION_DOWN;
+      if (snake_status.direction != DIRECTION_UP) {
+        snake_status.direction = DIRECTION_DOWN;
+      }
       return false;
       break;
     case DIRLEFT:
-      snake_status.direction = DIRECTION_LEFT;
+      if (snake_status.direction != DIRECTION_RIGHT) {
+        snake_status.direction = DIRECTION_LEFT;
+      }
       return false;
       break;
     case DIRRGHT:
-      snake_status.direction = DIRECTION_RIGHT;
+      if (snake_status.direction != DIRECTION_LEFT) {
+         snake_status.direction = DIRECTION_RIGHT;
+      }
 
       // corner
       if (record->event.pressed) {
