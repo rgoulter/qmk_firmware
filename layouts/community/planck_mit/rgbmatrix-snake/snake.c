@@ -19,8 +19,8 @@ void snake_init() {
   snake_status.snake_length = 4;
   snake_status.food = 20;
   snake_status.score = 0;
-  snake_status.snake_anim_counter = 300;
-  snake_status.snake_ms_per_move = 300;
+  snake_status.snake_anim_counter = 250;
+  snake_status.snake_ms_per_move = 250;
 
   srand(timer_read32());
 }
@@ -95,7 +95,7 @@ void move_snake(void) {
     if (collides_with_food(next_cell) && snake_status.snake_length < SNAKE_LENGTH_MAX) {
       snake_status.snake_length++;
       snake_status.score++;
-      uint8_t delta_ms = 10 * snake_status.score;
+      uint8_t delta_ms = 5 * snake_status.score;
       snake_status.snake_ms_per_move = (snake_status.snake_ms_per_move > SNAKE_MS_PER_MOVE_MIN + delta_ms) ?
         snake_status.snake_ms_per_move - delta_ms :
         SNAKE_MS_PER_MOVE_MIN;
