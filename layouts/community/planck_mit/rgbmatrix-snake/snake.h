@@ -2,6 +2,8 @@
 
 #include <stdint.h>
 
+#include "color.h"
+
 #define DIRECTION_RIGHT 0
 #define DIRECTION_UP 1
 #define DIRECTION_LEFT 2
@@ -21,7 +23,7 @@
 typedef struct _snake_status_t {
   char direction;
   uint8_t snake[SNAKE_LENGTH_MAX];
-  uint8_t snake_start;
+  uint8_t snake_head_idx;
   uint8_t snake_length;
   uint8_t food;
   // when to 'move' the snake
@@ -33,4 +35,4 @@ typedef struct _snake_status_t {
 extern snake_status_t snake_status;
 
 void snake_init(void);
-void snake_update(uint32_t delta_time);
+void snake_update(uint32_t delta_time, RGB bitmap[47]);
