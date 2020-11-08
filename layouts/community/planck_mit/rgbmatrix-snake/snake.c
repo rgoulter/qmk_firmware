@@ -68,8 +68,10 @@ void render_to_bitmap(RGB bitmap[47]) {
   uint8_t snake_head_idx = snake_status.snake_head_idx;
   for (uint8_t i = 0; i < snake_status.snake_length; i++) {
     uint8_t snake_idx = (snake_head_idx >= i) ? snake_head_idx - i : SNAKE_LENGTH_MAX - (i - snake_head_idx);
-    RGB snake_color = { 0xFF, 0, 0 };
     uint8_t cell = snake_status.snake[snake_idx];
+    uint8_t hue = 0xF0 / snake_status.snake_length * i;
+    HSV snake_color_hsv = { hue, 0xFF, 0xFF };
+    RGB snake_color = hsv_to_rgb(snake_color_hsv);
     update_bitmap_from_cell(bitmap, cell, snake_color);
   }
 }
