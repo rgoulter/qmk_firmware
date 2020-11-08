@@ -9,33 +9,17 @@ RGB_MATRIX_EFFECT(SNAKE)
 uint32_t timer = 0;
 uint32_t last_updated = 0;
 
-uint8_t counter = 0;
-
 static void render(uint8_t led_min, uint8_t led_max) {
   HSV hsv  = rgb_matrix_config.hsv;
   RGB rgb = hsv_to_rgb(hsv);
 
   for (uint8_t q = led_min; q < led_max; q++) {
-      if (q == counter) {
+      if (q == 11) {
           rgb_matrix_set_color(q, rgb.r, rgb.g, rgb.b);
       } else {
           rgb_matrix_set_color(q, 0x00, 0x00, 0x00);
       }
   }
-}
-
-static void update(uint32_t delta_time) {
-    if (snake_status.direction == DIRECTION_RIGHT) {
-      counter++;
-    } else if (snake_status.direction == DIRECTION_LEFT) {
-      counter--;
-    }
-    if (counter > 11) {
-      counter = 0;
-    }
-    if (counter < 0) {
-      counter = 11;
-    }
 }
 
 static bool SNAKE(effect_params_t* params) {
@@ -48,7 +32,7 @@ static bool SNAKE(effect_params_t* params) {
 
   if (led_max == DRIVER_LED_TOTAL) {
     uint32_t delta_time = timer_elapsed32(last_updated);
-    update(delta_time);
+    snake_update(delta_time);
     last_updated = timer_read32();
 
     timer = g_rgb_timer + (1000 / SNAKE_FPS);

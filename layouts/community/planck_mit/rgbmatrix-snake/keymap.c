@@ -26,9 +26,6 @@ enum custom_keycodes {
 
 char quarter_count = 0;
 char half_count = 0;
-snake_status_t snake_status = {
-  .direction = DIRECTION_RIGHT,
-};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -122,4 +119,6 @@ void keyboard_post_init_user(void) {
   // rgb_matrix_mode_noeeprom(RGB_MATRIX_SNAKE);
   eeconfig_init();
   rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_MULTISPLASH + 1);
+
+  snake_init();
 }
