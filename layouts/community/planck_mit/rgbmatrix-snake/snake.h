@@ -28,6 +28,8 @@ typedef struct _snake_status_t {
   uint8_t snake_head_idx;
   uint8_t snake_length;
   uint8_t food;
+  // to create a "pulsing" animation
+  uint8_t food_timer;
   uint8_t score;
   // when to 'move' the snake
   uint32_t snake_anim_counter;

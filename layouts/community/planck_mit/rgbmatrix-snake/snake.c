@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 #include "timer.h"
+#include "lib/lib8tion/lib8tion.h"
 
 snake_status_t snake_status = {
 };
@@ -131,13 +132,16 @@ void render_to_bitmap(RGB bitmap[47]) {
     uint8_t snake_idx = (snake_head_idx >= i) ? snake_head_idx - i : SNAKE_LENGTH_MAX - (i - snake_head_idx);
     uint8_t snake_cell = snake_status.snake[snake_idx];
     uint8_t hue = 0xF0 / snake_status.snake_length * i;
-    HSV snake_color_hsv = { hue, 0xFF, 0xFF };
+    uint8_t val = 0xFF - (0x2F / snake_status.snake_length * i);
+    HSV snake_color_hsv = { hue, 0xFF, val };
     RGB snake_color = hsv_to_rgb(snake_color_hsv);
     update_bitmap_from_cell(bitmap, snake_cell, snake_color);
   }
 
   // food
-  RGB food_color = {0xFF, 0xFF, 0}; // bgr
+  uint8_t food_val = 0xB0 + (cos8(snake_status.food_timer / 4) / 4);
+  HSV food_color_hsv = {0xFF, 0x00, food_val}; // white-ish
+  RGB food_color = hsv_to_rgb(food_color_hsv);
   update_bitmap_from_cell(bitmap, snake_status.food, food_color);
 }
 
@@ -149,5 +153,9 @@ void snake_update(uint32_t delta_time, RGB bitmap[47]) {
     snake_status.snake_anim_counter = snake_status.snake_ms_per_move + remaining;
     move_snake();
   }
+
+  // ignore/accept overflow
+  snake_status.food_timer += delta_time;
+
   render_to_bitmap(bitmap);
 }
