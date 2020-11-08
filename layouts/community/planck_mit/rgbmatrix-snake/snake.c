@@ -10,6 +10,7 @@ snake_status_t snake_status = {
 
 void snake_init() {
   snake_status.direction = DIRECTION_RIGHT;
+  snake_status.last_moved_direction = DIRECTION_RIGHT;
   snake_status.snake[3] = 16;
   snake_status.snake[2] = 15;
   snake_status.snake[1] = 14;
@@ -103,6 +104,7 @@ void move_snake(void) {
     uint8_t next_snake_head_idx = (snake_status.snake_head_idx == SNAKE_LENGTH_MAX - 1) ? 0 : snake_status.snake_head_idx + 1;
     snake_status.snake[next_snake_head_idx] = next_cell;
     snake_status.snake_head_idx = next_snake_head_idx;
+    snake_status.last_moved_direction = snake_status.direction;
   }
 }
 

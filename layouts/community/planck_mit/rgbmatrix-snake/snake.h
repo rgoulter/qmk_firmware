@@ -24,6 +24,7 @@
 // idx := row * COLS + col.
 typedef struct _snake_status_t {
   char direction;
+  char last_moved_direction;
   uint8_t snake[SNAKE_LENGTH_MAX];
   uint8_t snake_head_idx;
   uint8_t snake_length;
