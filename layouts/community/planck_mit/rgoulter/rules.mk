@@ -1,4 +1,4 @@
-RGB_MATRIX_CUSTOM_USER = yes
+RGB_MATRIX_CUSTOM_USER = no
 
 SRC += snake.c
 

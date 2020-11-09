@@ -14,7 +14,9 @@ enum layers {
   _QWERTY,
   _COLEMAK,
   _DVORAK,
+#ifdef RGB_MATRIX_CUSTOM_USER
   _SNAKE,
+#endif
   _LOWER,
   _RAISE,
   _CHILDPROOF,
@@ -32,8 +34,10 @@ enum custom_keycodes {
   DIRDOWN
 };
 
+#ifdef RGB_MATRIX_CUSTOM_USER
 char quarter_count = 0;
 char half_count = 0;
+#endif
 
 #define QWERTY     DF(_QWERTY)
 #define COLEMAK    DF(_COLEMAK)
@@ -111,12 +115,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ADJUST,  KC_LCTL, KC_LALT, KC_LGUI, LOWER,      KC_SPC,        RAISE,   KC_RGUI, KC_RALT, KC_RCTL, NUMPAD \
 ),
 
+#ifdef RGB_MATRIX_CUSTOM_USER
 [_SNAKE] = LAYOUT_planck_mit( \
   QUARTER, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QUARTER, \
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, HALF,    XXXXXXX, XXXXXXX, HALF,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DIRUP,   XXXXXXX, \
   QUARTER, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,     XXXXXXX,      XXXXXXX, XXXXXXX, DIRLEFT, DIRDOWN, DIRRGHT \
 ),
+#endif
 
 [_LOWER] = LAYOUT_planck_mit( \
   KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_PIPE, \
@@ -162,6 +168,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+#ifdef RGB_MATRIX_CUSTOM_USER
     case DIRUP:
       if (snake_status.last_moved_direction != DIRECTION_DOWN) {
         snake_status.direction = DIRECTION_UP;
@@ -219,6 +226,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       snake_init();
       rgb_matrix_mode_noeeprom(RGB_MATRIX_CUSTOM_SNAKE);
       return false;
+#endif  // RGB_MATRIX_CUSTOM_USER
   }
   return true;
 }
