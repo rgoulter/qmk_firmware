@@ -27,8 +27,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PRODUCT      minif4_36keys
 
 /* key matrix size */
-#define MATRIX_ROWS 2
-#define MATRIX_COLS 3
+// Rows doubled for split
+#define MATRIX_ROWS 8
+#define MATRIX_COLS 5
 
 /*
  * Keyboard Matrix Assignments
@@ -40,17 +41,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *                  ROW2COL = ROW = Anode (+), COL = Cathode (-, marked on diode)
  *
  */
-#define MATRIX_ROW_PINS { D0, D5 }
-#define MATRIX_COL_PINS { F1, F0, B0 }
+// #define MATRIX_ROW_PINS { D0, D5 }
+// #define MATRIX_COL_PINS { F1, F0, B0 }
+#define DIRECT_PINS { \
+    { B15, A8, A9, A10, A11 }, \
+    { A12, A15, B3, B4, B10 }, \
+    { B2, B1, B0, A7, A6 },\
+    { NO_PIN, NO_PIN, A5, A4, A3 } \
+}
+// #define DIRECT_PINS_RIGHT {  \
+//     { A11, A10, A9, A8, B15 }, \
+//     { B10, B4, B3, A15, A12 }, \
+//     { A6, A7, B0, B1, B2 }, \
+//     { A3, A4, A5, NO_PIN, NO_PIN } \
+// }
 #define UNUSED_PINS
 
 /* COL2ROW, ROW2COL */
-#define DIODE_DIRECTION COL2ROW
+// #define DIODE_DIRECTION COL2ROW
 
 /*
  * Split Keyboard specific options, make sure you have 'SPLIT_KEYBOARD = yes' in your rules.mk, and define SOFT_SERIAL_PIN.
  */
-#define SOFT_SERIAL_PIN D0  // or D1, D2, D3, E6
+#define SOFT_SERIAL_PIN B7
 
 //#define BACKLIGHT_PIN B7
 //#define BACKLIGHT_LEVELS 3

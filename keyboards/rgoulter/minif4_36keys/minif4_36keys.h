@@ -18,18 +18,19 @@
 
 #include "quantum.h"
 
-/* This is a shortcut to help you visually see your layout.
- *
- * The first section contains all of the arguments representing the physical
- * layout of the board and position of the keys.
- *
- * The second converts the arguments into a two-dimensional array which
- * represents the switch matrix.
- */
-#define LAYOUT( \
-    k00, k01, k02, \
-      k10,  k12    \
-) { \
-    { k00, k01,   k02 }, \
-    { k10, KC_NO, k12 }  \
-}
+#define LAYOUT_split_3x5_3( \
+  L11, L12, L13, L14, L15,           R11, R12, R13, R14, R15, \
+  L21, L22, L23, L24, L25,           R21, R22, R23, R24, R25, \
+  L31, L32, L33, L34, L35,           R31, R32, R33, R34, R35, \
+                 L41, L42, L43, R41, R42, R43 \
+  ) \
+  { \
+    { L11, L12, L13, L14, L15 }, \
+    { L21, L22, L23, L24, L25 }, \
+    { L31, L32, L33, L34, L35 }, \
+    { KC_NO, KC_NO, L41, L42, L43 }, \
+    { R15, R14, R13, R12, R11 }, \
+    { R25, R24, R23, R22, R21 }, \
+    { R35, R34, R33, R32, R31 }, \
+    { KC_NO, KC_NO, R43, R42, R41 }  \
+  }
