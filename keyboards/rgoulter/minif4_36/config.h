@@ -72,3 +72,7 @@
 /* disable these deprecated features by default */
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
+
+/* B8, B9 instead of B6, B7 */
+#define I2C1_SCL 8
+#define I2C1_SDA 9
