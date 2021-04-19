@@ -7,5 +7,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 void keyboard_post_init_user(void) {
     rgblight_enable_noeeprom();
     rgblight_sethsv_noeeprom_cyan();
-    rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL);
+    // rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL);
+    rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); // sets mode to Fast breathing without saving
 }

@@ -22,10 +22,10 @@ KEYBOARD_SHARED_EP = yes    # Free up some extra endpoints - needed if console+m
 
 # SPLIT_KEYBOARD = yes
 # SPLIT_TRANSPORT = custom
-SERIAL_DRIVER = usart
-OLED_DRIVER_ENABLE = yes
-WS2812_DRIVER = pwm
-OPT_DEFS += -DSTM32_DMA_REQUIRED=TRUE
+# SERIAL_DRIVER = usart
+OLED_DRIVER_ENABLE = no
+# WS2812_DRIVER = pwm
+# OPT_DEFS += -DSTM32_DMA_REQUIRED=TRUE
 
 # Address of the bootloader in system memory
 STM32_BOOTLOADER_ADDRESS = 0x1FFF0000
