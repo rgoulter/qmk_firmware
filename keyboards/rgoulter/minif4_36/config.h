@@ -55,8 +55,10 @@
 #define RGB_DI_PIN A0
 #define RGBLED_NUM 44
 #define RGBLED_SPLIT { 22,22 }
-#define RGBLIGHT_LIMIT_VAL 120
+#define RGBLIGHT_LIMIT_VAL 30
 #define RGBLIGHT_ANIMATIONS
+
+#define BOARD_OTG_NOVBUSSENS 1
 
 // xxx ???
 // #define WS2812_PWM_DRIVER PWMD5
@@ -76,3 +78,7 @@
 /* B8, B9 instead of B6, B7 */
 #define I2C1_SCL 8
 #define I2C1_SDA 9
+
+/* B6, B7 instead of A9, A10 */
+#define SD1_TX_PIN B6
+#define SD1_RX_PIN B7
