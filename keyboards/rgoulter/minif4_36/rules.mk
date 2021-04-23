@@ -29,3 +29,8 @@ OLED_DRIVER_ENABLE = no
 
 # Address of the bootloader in system memory
 STM32_BOOTLOADER_ADDRESS = 0x1FFF0000
+
+
+CUSTOM_MATRIX = yes
+# project specific files
+SRC += matrix.c
