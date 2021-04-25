@@ -78,22 +78,25 @@ void print_info_about_gpioa_pin(uint32_t pin) {
   // PIN_MODE_OUTPUT(n)
   // PIN_MODE_ALTERNATE(n)
   // PIN_MODE_ANALOG(n)
-  if ((moder & PIN_MODE_INPUT(pin)) > 0) {
-    uprintf("m: I, ");
-  }
-  if ((moder & PIN_MODE_OUTPUT(pin)) > 0) {
-    uprintf("m: O, ");
-  }
-  if ((moder & PIN_MODE_ALTERNATE(pin)) > 0) {
-    uprintf("m: AL, ");
-  }
-  if ((moder & PIN_MODE_ANALOG(pin)) > 0) {
-    uprintf("m: AN, ");
+  uint32_t pin_mode = (moder >> ((pin) * 2U)) & 3U; // inverse of PIN_MODE <<
+  switch (pin_mode) {
+  case 3U:
+    uprintf("os: AN, ");
+    break;
+  case 2U:
+    uprintf("os: AL, ");
+    break;
+  case 1U:
+    uprintf("os: O, ");
+    break;
+  case 0U:
+    uprintf("os: I, ");
+    break;
   }
 
   // PIN_OTYPE_PUSHPULL(n)
   // PIN_OTYPE_OPENDRAIN(n)
-  if ((otyper & PIN_OTYPE_PUSHPULL(pin)) > 0) {
+  if ((otyper & PIN_OTYPE_PUSHPULL(pin)) == 0) {
     uprintf("t: PP, ");
   }
   if ((otyper & PIN_OTYPE_OPENDRAIN(pin)) > 0) {
@@ -108,23 +111,26 @@ void print_info_about_gpioa_pin(uint32_t pin) {
   // PIN_OSPEED_LOW(n)
   // PIN_OSPEED_MEDIUM(n)
   // PIN_OSPEED_HIGH(n)
-  if ((ospeedr & PIN_OSPEED_VERYLOW(pin)) > 0) {
-    uprintf("os: VL, ");
-  }
-  if ((ospeedr & PIN_OSPEED_LOW(pin)) > 0) {
-    uprintf("os: L, ");
-  }
-  if ((ospeedr & PIN_OSPEED_MEDIUM(pin)) > 0) {
-    uprintf("os: M, ");
-  }
-  if ((ospeedr & PIN_OSPEED_HIGH(pin)) > 0) {
+  uint32_t pin_ospeed = (ospeedr >> ((pin) * 2U)) & 3U; // inverse of PIN_OSPEED <<
+  switch (pin_ospeed) {
+  case 3U:
     uprintf("os: H, ");
+    break;
+  case 2U:
+    uprintf("os: M, ");
+    break;
+  case 1U:
+    uprintf("os: L, ");
+    break;
+  case 0U:
+    uprintf("os: VL, ");
+    break;
   }
 
   // PIN_PUPDR_FLOATING(n)
   // PIN_PUPDR_PULLUP(n)
   // PIN_PUPDR_PULLDOWN(n)
-  if ((pupdr & PIN_PUPDR_FLOATING(pin)) > 0) {
+  if ((pupdr & PIN_PUPDR_FLOATING(pin)) == 0) {
     uprintf("PU/PD: F, ");
   }
   if ((pupdr & PIN_PUPDR_PULLUP(pin)) > 0) {
@@ -136,17 +142,11 @@ void print_info_about_gpioa_pin(uint32_t pin) {
 
   // PIN_AFIO_AF(n, v)
   if (pin < 8) {
-    for (int af = 0; af < 16; af++) {
-      if ((afrl & PIN_AFIO_AF(pin, af)) > 0) {
-        uprintf("AF: %d", af);
-      }
-    }
+    uint32_t pin_af = (afrl >> (((pin) % 8U) * 4U)) & 15U; // inverse of PIN_AFIO <<
+    uprintf("AF: %d", pin_af);
   } else {
-    for (int af = 0; af < 16; af++) {
-      if ((afrh & PIN_AFIO_AF(pin, af)) > 0) {
-        uprintf("AF: %d", af);
-      }
-    }
+    uint32_t pin_af = (afrh >> (((pin) % 8U) * 4U)) & 15U; // inverse of PIN_AFIO <<
+    uprintf("AF: %d", pin_af);
   }
   uprintf("\n");
 #endif
