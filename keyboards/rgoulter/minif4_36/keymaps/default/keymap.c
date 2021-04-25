@@ -49,9 +49,11 @@ void board_init(void) {
   // B9 is configured as I2C1_SDA in the board file; that function must be
   // disabled before using B7 as I2C1_SDA.
   // setPinInputHigh(A9);
+  // USB_OTG_FS->GCCFG &= ~USB_OTG_GCCFG_NOVBUSSENS_Msk;
 
   // This still doesn't 'solve' A9 not handling properly. :/
-  palSetPadMode(GPIOA, 9, PAL_MODE_INPUT_PULLUP | PAL_MODE_ALTERNATE(0));
+  // palSetPadMode(GPIOA, 9, PAL_MODE_INPUT_PULLUP | PAL_MODE_ALTERNATE(0));
+
 }
 
 void keyboard_post_init_user(void) {
@@ -62,6 +64,7 @@ void keyboard_post_init_user(void) {
   // rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); // sets mode to Fast breathing without saving
   rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD); // sets mode to Fast breathing without saving
 #endif
+  // palSetPadMode(GPIOA, 9, PAL_MODE_INPUT_PULLUP | PAL_MODE_ALTERNATE(0));
 }
 
 void print_info_about_gpioa_pin(uint32_t pin) {
@@ -156,12 +159,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // If console is enabled, it will print the matrix position and status of each key pressed
 #ifdef CONSOLE_ENABLE
 
-    print_info_about_gpioa_pin(7);
-    print_info_about_gpioa_pin(8);
-    print_info_about_gpioa_pin(9);
-    print_info_about_gpioa_pin(10);
-    uprintf("A9 is %d\n", readPin(A9));
+  // print_info_about_gpioa_pin(7);
+  print_info_about_gpioa_pin(8);
+  print_info_about_gpioa_pin(9);
+  // print_info_about_gpioa_pin(10);
+  // uprintf("A9 is %d\n", readPin(A9));
+
+    // uint32_t gccfg = USB_OTG_FS->GCCFG;
+    // uint32_t novbussens = gccfg & USB_OTG_GCCFG_NOVBUSSENS_Msk;
+    // if (novbussens > 0) {
+    //     uprintf("NOVBSSENS enabled!!!!\n");
+    // } else {
+    //     uprintf("NOVBSSENS disabled. good.\n");
+    // }
+
 
 #endif 
+  switch(keycode) {
+  case KC_Q:
+    if (record->event.pressed) {
+      palSetLine(PAL_LINE(GPIOA, 9U));
+    } else {
+      palClearLine(PAL_LINE(GPIOA, 9U));
+    }
+    break;
+
+  }
   return true;
 }

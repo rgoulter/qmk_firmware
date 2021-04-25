@@ -72,7 +72,10 @@ void matrix_init(void)
     // RICHARD: this is inlined, unrolled init_pins()
     palSetLineMode(LINE_SW_11, PAL_MODE_INPUT_PULLUP);
     palSetLineMode(LINE_SW_12, PAL_MODE_INPUT_PULLUP);
-    palSetLineMode(LINE_SW_13, PAL_MODE_INPUT_PULLUP);
+    // palSetLineMode(LINE_SW_13, PAL_MODE_INPUT_PULLUP);
+
+    // palSetLineMode(LINE_SW_13, PAL_MODE_OUTPUT_PUSHPULL);
+    // palSetLineMode(LINE_SW_13, PAL_MODE_INPUT_PULLUP);
     // palSetLineMode(LINE_SW_14, PAL_MODE_INPUT_PULLUP);
     // palSetLineMode(LINE_SW_15, PAL_MODE_INPUT_PULLUP);
     // palSetLineMode(LINE_SW_21, PAL_MODE_INPUT_PULLUP);
@@ -91,7 +94,7 @@ void matrix_init(void)
 
     palClearLine(LINE_SW_11);
     palClearLine(LINE_SW_12);
-    palClearLine(LINE_SW_13);
+    // palClearLine(LINE_SW_13);
     // palClearLine(LINE_SW_14);
     // palClearLine(LINE_SW_15);
     // palClearLine(LINE_SW_21);
@@ -177,8 +180,8 @@ uint8_t matrix_scan(void)
         case 0:
           data = (
               ((palReadLine(LINE_SW_11) ? 0 : 1) << 0 ) |
-              ((palReadLine(LINE_SW_12) ? 0 : 1) << 1 ) |
-              ((palReadLine(LINE_SW_13) ? 0 : 1) << 2 ) /* |
+              ((palReadLine(LINE_SW_12) ? 0 : 1) << 1 ) /* |
+              ((palReadLine(LINE_SW_13) ? 0 : 1) << 2 ) |
               (palReadLine(LINE_SW_14) << 3 ) |
               (palReadLine(LINE_SW_15) << 4 ) // */
           );
