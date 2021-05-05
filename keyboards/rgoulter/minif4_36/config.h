@@ -34,7 +34,7 @@
    { B15, A8, A9, A10, A2 },       \
    { B5, A15, B3, B4, B10 },       \
    { A1, B1, B0, A7, A6 },             \
-   { NO_PIN, NO_PIN, A5, A4, A3 }          \
+   { NO_PIN, B14, A5, A4, A3 }          \
 }
 
 // #define MATRIX_COL_PINS { B0, A7, A3, A5, A4, A2 }
@@ -73,6 +73,9 @@
 #define WS2812_PWM_PAL_MODE 2
 #define WS2812_DMA_STREAM STM32_DMA1_STREAM0
 #define WS2812_DMA_CHANNEL 6
+
+#define ENCODERS_PAD_A { B12 }
+#define ENCODERS_PAD_B { B13 }
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5
