@@ -42,8 +42,8 @@
 // #define MATRIX_COL_PINS_RIGHT { B0, A7, A3, A5, A4, A2 }
 // #define MATRIX_ROW_PINS_RIGHT  { B12, A6, B13, B9, B8 }
 
-//#define SOFT_SERIAL_PIN A15
-//#define SELECT_SOFT_SERIAL_SPEED 1
+#define SOFT_SERIAL_PIN B6
+#define SPLIT_TRANSPORT_MIRROR
 
 #define MATRIX_IO_DELAY 5
 #define TAP_CODE_DELAY 10
@@ -53,11 +53,18 @@
 // switch is B14
 
 #define RGB_DI_PIN A0
-#define RGBLED_NUM 44
-#define RGBLIGHT_SPLIT
-#define RGBLED_SPLIT { 22,22 }
-#define RGBLIGHT_LIMIT_VAL 128
-#define RGBLIGHT_ANIMATIONS
+// 18 + 4 on each side
+#define DRIVER_LED_TOTAL 44
+
+// #define RGBLED_NUM 44
+// #define RGBLIGHT_SPLIT
+// #define RGBLED_SPLIT { 22,22 }
+// #define RGBLIGHT_LIMIT_VAL 128
+// #define RGBLIGHT_ANIMATIONS
+
+#define RGB_MATRIX_SPLIT { 22,22 }
+#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 200
+#define RGB_MATRIX_KEYPRESSES
 
 #define BOARD_OTG_NOVBUSSENS 1
 
@@ -82,5 +89,3 @@
 /* B6, B7 instead of A9, A10 */
 // #define SD1_TX_PIN B6
 // #define SD1_RX_PIN B7
-
-#define SOFT_SERIAL_PIN B6

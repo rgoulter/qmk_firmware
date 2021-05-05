@@ -67,6 +67,10 @@ void keyboard_post_init_user(void) {
   rgblight_sethsv_noeeprom(180, 255, 255); // sets the color to teal/cyan without saving
   // rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); // sets mode to Fast breathing without saving
   rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL + 4); // sets mode to Fast breathing without saving
+
+#endif
+#ifdef RGB_MATRIX_ENABLE
+   rgb_matrix_mode_noeeprom(RGB_MATRIX_MULTISPLASH);
 #endif
 }
 
