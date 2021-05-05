@@ -27,7 +27,7 @@
 
 /* key matrix size */
 // #define MATRIX_ROWS 8
-#define MATRIX_ROWS 4
+#define MATRIX_ROWS 8
 #define MATRIX_COLS 5
 
 #define DIRECT_PINS { \
@@ -55,7 +55,7 @@
 #define RGB_DI_PIN A0
 #define RGBLED_NUM 44
 #define RGBLED_SPLIT { 22,22 }
-#define RGBLIGHT_LIMIT_VAL 30
+#define RGBLIGHT_LIMIT_VAL 128
 #define RGBLIGHT_ANIMATIONS
 
 #define BOARD_OTG_NOVBUSSENS 1
@@ -80,5 +80,7 @@
 #define I2C1_SDA 9
 
 /* B6, B7 instead of A9, A10 */
-#define SD1_TX_PIN B6
-#define SD1_RX_PIN B7
+// #define SD1_TX_PIN B6
+// #define SD1_RX_PIN B7
+
+#define SOFT_SERIAL_PIN B6

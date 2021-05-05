@@ -14,13 +14,13 @@ SLEEP_LED_ENABLE = no       # Breathing sleep LED during USB suspend
 # if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
 NKRO_ENABLE = yes           # USB Nkey Rollover
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
-RGBLIGHT_ENABLE = yes       # Enable keyboard RGB underglow
+RGBLIGHT_ENABLE = no       # Enable keyboard RGB underglow
 ENCODER_ENABLE = yes        # Enable rotary encoder support
 BLUETOOTH_ENABLE = no       # Enable Bluetooth
 AUDIO_ENABLE = no           # Audio output
 KEYBOARD_SHARED_EP = yes    # Free up some extra endpoints - needed if console+mouse+extra
 
-# SPLIT_KEYBOARD = yes
+SPLIT_KEYBOARD = yes
 # SPLIT_TRANSPORT = custom
 # SERIAL_DRIVER = usart
 OLED_DRIVER_ENABLE = no
