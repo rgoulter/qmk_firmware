@@ -54,18 +54,18 @@
 
 #define RGB_DI_PIN A0
 #define RGBLED_NUM 44
+#define RGBLIGHT_SPLIT
 #define RGBLED_SPLIT { 22,22 }
 #define RGBLIGHT_LIMIT_VAL 128
 #define RGBLIGHT_ANIMATIONS
 
 #define BOARD_OTG_NOVBUSSENS 1
 
-// xxx ???
-// #define WS2812_PWM_DRIVER PWMD5
-// #define WS2812_PWM_CHANNEL 1
-// #define WS2812_PWM_PAL_MODE 2
-// #define WS2812_DMA_STREAM STM32_DMA1_STREAM2
-// #define WS2812_DMA_CHANNEL 5
+#define WS2812_PWM_DRIVER PWMD5
+#define WS2812_PWM_CHANNEL 1
+#define WS2812_PWM_PAL_MODE 2
+#define WS2812_DMA_STREAM STM32_DMA1_STREAM0
+#define WS2812_DMA_CHANNEL 6
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5
