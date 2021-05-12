@@ -127,129 +127,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-void board_init(void) {
-  // B9 is configured as I2C1_SDA in the board file; that function must be
-  // disabled before using B7 as I2C1_SDA.
-  // setPinInputHigh(A9);
+enum combo_events {
+  DESKTOP_GO_LEFT,
+  DESKTOP_GO_RIGHT,
+  LEAD,
+};
 
-  // This still doesn't 'solve' A9 not handling properly. :/
-  palSetPadMode(GPIOA, 9, PAL_MODE_INPUT_PULLUP | PAL_MODE_ALTERNATE(0));
-}
+// can't be keys which have tap-hold
+const uint16_t PROGMEM dsk_lower_left_combo[] = {KC_J, KC_K, COMBO_END};
+// const uint16_t PROGMEM dsk_lower_left_combo[] = {LCTLT_E, LSFTT_U, COMBO_END};
+const uint16_t PROGMEM dsk_lower_right_combo[] = {KC_M, KC_W, COMBO_END};
 
-void keyboard_post_init_user(void) {
-  // Call the post init code.
-#ifdef RGBLIGHT_ENABLE
-  rgblight_enable_noeeprom(); // enables Rgb, without saving settings
-  rgblight_sethsv_noeeprom(180, 255, 255); // sets the color to teal/cyan without saving
-  // rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING); // sets mode to Fast breathing without saving
-  rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL + 4); // sets mode to Fast breathing without saving
+combo_t key_combos[COMBO_COUNT] = {
+  [DESKTOP_GO_LEFT] = COMBO_ACTION(dsk_lower_left_combo),
+  [DESKTOP_GO_RIGHT] = COMBO_ACTION(dsk_lower_right_combo),
+};
 
-#endif
-#ifdef RGB_MATRIX_ENABLE
-  // rgb_matrix_mode_noeeprom(RGB_MATRIX_MULTISPLASH);
-#endif
-}
-
-void print_info_about_gpioa_pin(uint32_t pin) {
-#ifdef CONSOLE_ENABLE
-  uint32_t moder = GPIOA->MODER; // mode
-  uint32_t otyper = GPIOA->OTYPER; // output type
-  uint32_t ospeedr = GPIOA->OSPEEDR; // output speed type
-  uint32_t pupdr = GPIOA->PUPDR; // pull-up/pull-down
-  uint32_t afrl = GPIOA->AFRL; // alternate function (low)
-  uint32_t afrh = GPIOA->AFRH; // alternate function (high)
-
-  uprintf("A%d:: ", pin);
-  // PIN_MODE_INPUT(n)
-  // PIN_MODE_OUTPUT(n)
-  // PIN_MODE_ALTERNATE(n)
-  // PIN_MODE_ANALOG(n)
-  if ((moder & PIN_MODE_INPUT(pin)) > 0) {
-    uprintf("m: I, ");
-  }
-  if ((moder & PIN_MODE_OUTPUT(pin)) > 0) {
-    uprintf("m: O, ");
-  }
-  if ((moder & PIN_MODE_ALTERNATE(pin)) > 0) {
-    uprintf("m: AL, ");
-  }
-  if ((moder & PIN_MODE_ANALOG(pin)) > 0) {
-    uprintf("m: AN, ");
-  }
-
-  // PIN_OTYPE_PUSHPULL(n)
-  // PIN_OTYPE_OPENDRAIN(n)
-  if ((otyper & PIN_OTYPE_PUSHPULL(pin)) > 0) {
-    uprintf("t: PP, ");
-  }
-  if ((otyper & PIN_OTYPE_OPENDRAIN(pin)) > 0) {
-    uprintf("t: OD, ");
-  }
-
-  // output data register
-  // PIN_ODR_LOW(n)
-  // PIN_ODR_HIGH(n)
-
-  // PIN_OSPEED_VERYLOW(n)
-  // PIN_OSPEED_LOW(n)
-  // PIN_OSPEED_MEDIUM(n)
-  // PIN_OSPEED_HIGH(n)
-  if ((ospeedr & PIN_OSPEED_VERYLOW(pin)) > 0) {
-    uprintf("os: VL, ");
-  }
-  if ((ospeedr & PIN_OSPEED_LOW(pin)) > 0) {
-    uprintf("os: L, ");
-  }
-  if ((ospeedr & PIN_OSPEED_MEDIUM(pin)) > 0) {
-    uprintf("os: M, ");
-  }
-  if ((ospeedr & PIN_OSPEED_HIGH(pin)) > 0) {
-    uprintf("os: H, ");
-  }
-
-  // PIN_PUPDR_FLOATING(n)
-  // PIN_PUPDR_PULLUP(n)
-  // PIN_PUPDR_PULLDOWN(n)
-  if ((pupdr & PIN_PUPDR_FLOATING(pin)) > 0) {
-    uprintf("PU/PD: F, ");
-  }
-  if ((pupdr & PIN_PUPDR_PULLUP(pin)) > 0) {
-    uprintf("PU/PD: PU, ");
-  }
-  if ((pupdr & PIN_PUPDR_PULLDOWN(pin)) > 0) {
-    uprintf("PU/PD: PD, ");
-  }
-
-  // PIN_AFIO_AF(n, v)
-  if (pin < 8) {
-    for (int af = 0; af < 16; af++) {
-      if ((afrl & PIN_AFIO_AF(pin, af)) > 0) {
-        uprintf("AF: %d", af);
+void process_combo_event(uint16_t combo_index, bool pressed) {
+  switch(combo_index) {
+    case DESKTOP_GO_LEFT:
+      if (pressed) {
+        // macOS
+        tap_code16(LCTL(KC_LEFT));
       }
-    }
-  } else {
-    for (int af = 0; af < 16; af++) {
-      if ((afrh & PIN_AFIO_AF(pin, af)) > 0) {
-        uprintf("AF: %d", af);
+      break;
+    case DESKTOP_GO_RIGHT:
+      if (pressed) {
+        // macOS
+        tap_code16(LCTL(KC_RIGHT));
       }
-    }
+      break;
   }
-  uprintf("\n");
-#endif
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  // If console is enabled, it will print the matrix position and status of each key pressed
-#ifdef CONSOLE_ENABLE
-
-#endif 
-  return true;
-}
-
-void encoder_update_user(uint8_t index, bool clockwise) {
-        if (clockwise) {
-            tap_code(KC_DOWN);
-        } else {
-            tap_code(KC_UP);
-        }
 }
