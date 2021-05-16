@@ -27,7 +27,7 @@ BLUETOOTH_ENABLE = no       # Enable Bluetooth
 AUDIO_ENABLE = no           # Audio output
 KEYBOARD_SHARED_EP = yes    # Free up some extra endpoints - needed if console+mouse+extra
 
-SPLIT_KEYBOARD = no
+SPLIT_KEYBOARD = yes
 # SPLIT_TRANSPORT = custom
 # SERIAL_DRIVER = usart
 OLED_DRIVER_ENABLE = no
