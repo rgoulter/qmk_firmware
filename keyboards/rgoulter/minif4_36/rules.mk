@@ -1,5 +1,11 @@
 # MCU name
-MCU = STM32F401
+MCU = STM32F103
+
+# Bootloader selection
+BOOTLOADER = stm32duino
+
+# Enter lower-power sleep mode when on the ChibiOS idle thread
+OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE
 
 # Build Options
 #   change yes to no to disable
@@ -21,12 +27,11 @@ BLUETOOTH_ENABLE = no       # Enable Bluetooth
 AUDIO_ENABLE = no           # Audio output
 KEYBOARD_SHARED_EP = yes    # Free up some extra endpoints - needed if console+mouse+extra
 
-SPLIT_KEYBOARD = yes
+SPLIT_KEYBOARD = no
 # SPLIT_TRANSPORT = custom
 # SERIAL_DRIVER = usart
 OLED_DRIVER_ENABLE = no
 WS2812_DRIVER = pwm
-OPT_DEFS += -DSTM32_DMA_REQUIRED=TRUE
 
 # Address of the bootloader in system memory
-STM32_BOOTLOADER_ADDRESS = 0x1FFF0000
+# STM32_BOOTLOADER_ADDRESS = 0x1FFF0000

@@ -20,7 +20,7 @@
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID 0xFEED
-#define PRODUCT_ID 0x7812
+#define PRODUCT_ID 0x7813
 #define DEVICE_VER 0x0001
 #define MANUFACTURER Richard Goulter
 #define PRODUCT MiniF4 36-key
@@ -45,11 +45,22 @@
 #endif
 #define MATRIX_COLS 5
 
-#define DIRECT_PINS { \
+/*
+ #define DIRECT_PINS {            \
    { B15, A8, A9, A10, A2 },       \
    { B5, A15, B3, B4, B10 },       \
    { A1, B1, B0, A7, A6 },         \
    { NO_PIN, B14, A5, A4, A3 }     \
+}
+// */
+// SW25 was at B2; but .... this is where NRST is.
+// let's use B11 for SW25
+// A0 didn't work if we used A0 as RGB pin...
+#define DIRECT_PINS { \
+   { B15, A8, A9, A10, A3 },       \
+   { B5, A15, B3, B4, A0 },       \
+   { A2, B10, B1, B0, A7 },             \
+   { NO_PIN, B14, A6, A5, A4 }          \
 }
 
 // Split Transport
@@ -67,7 +78,7 @@
 
 // RGB Matrix
 #ifdef RGB_MATRIX_ENABLE
-#define RGB_DI_PIN A0
+#define RGB_DI_PIN A1
 
 #ifdef SPLIT_KEYBOARD
 // 18 + 4 on each side
