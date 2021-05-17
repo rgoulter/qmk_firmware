@@ -61,7 +61,8 @@ static inline void setPinInputHigh_atomic(pin_t pin) {
 #ifdef DIRECT_PINS
 
 static void init_pins(void) {
-    for (int row = 0; row < MATRIX_ROWS; row++) {
+  // for (int row = 0; row < MATRIX_ROWS_PER_HAND; row++) {
+    for (int row = 0; row < ROWS_PER_HAND; row++) {
         for (int col = 0; col < MATRIX_COLS; col++) {
             pin_t pin = direct_pins[row][col];
             if (pin != NO_PIN) {
