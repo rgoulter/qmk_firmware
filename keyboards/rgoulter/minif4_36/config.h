@@ -56,11 +56,12 @@
 // SW25 was at B2; but .... this is where NRST is.
 // let's use B11 for SW25
 // A0 didn't work if we used A0 as RGB pin...
+//   { NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN },
 #define DIRECT_PINS { \
    { B15, A8, A9, A10, A3 },       \
    { B5, A15, B3, B4, A0 },       \
    { A2, B10, B1, B0, A7 },             \
-   { NO_PIN, B14, A6, A5, A4 }          \
+   { NO_PIN, B14, A6, A5, A4 }         \
 }
 
 // Split Transport
