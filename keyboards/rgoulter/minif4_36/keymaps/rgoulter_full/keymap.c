@@ -127,6 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+#ifdef COMBO_ENABLE
 enum combo_events {
   DESKTOP_GO_LEFT,
   DESKTOP_GO_RIGHT,
@@ -159,6 +160,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
       break;
   }
 }
+#endif
 
 void keyboard_post_init_user(void) {
 #ifdef RGB_MATRIX_ENABLE
