@@ -82,9 +82,14 @@
 #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 200
 #define RGB_MATRIX_KEYPRESSES
 
+// cf. Table 9. Alternate function mapping
+// of STM32F401xE datasheet
+// PA0's AF_02 is TIM5_CH1
 #define WS2812_PWM_DRIVER PWMD5
 #define WS2812_PWM_CHANNEL 1
 #define WS2812_PWM_PAL_MODE 2
+// cf. Table 28. DMA1 request mapping
+// in 9.3.3 of RM0368
 #define WS2812_DMA_STREAM STM32_DMA1_STREAM0
 #define WS2812_DMA_CHANNEL 6
 #endif
