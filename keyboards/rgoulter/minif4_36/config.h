@@ -72,9 +72,11 @@
 #ifdef SPLIT_KEYBOARD
 // 18 + 4 on each side
 #define DRIVER_LED_TOTAL 44
+#define RGBLED_NUM 44
 #define RGB_MATRIX_SPLIT { 22,22 }
 #else
 #define DRIVER_LED_TOTAL 22
+#define RGBLED_NUM 22
 #endif
 
 #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 200
