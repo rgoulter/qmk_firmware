@@ -15,7 +15,10 @@
  */
 
 #include "minif4_36.h"
+
+#ifdef SPLIT_KEYBOARD
 #include "split_util.h"
+#endif
 
 #if defined(RGB_MATRIX_ENABLE)
 led_config_t g_led_config = {
@@ -71,9 +74,16 @@ led_config_t g_led_config = {
 };
 #endif
 
+void board_init(void) {
+    // B9 is configured as I2C1_SDA in the board file; that function must be
+    // disabled before using B7 as I2C1_SDA.
+    setPinInputHigh(B9);
+}
+
 void matrix_init_kb(void) {
 
 #ifdef RGB_MATRIX_ENABLE
+#ifdef SPLIT_KEYBOARD
     if (!is_keyboard_left()) {
         g_led_config = (led_config_t){
           {
@@ -128,5 +138,7 @@ void matrix_init_kb(void) {
         };
     }
 #endif
+#endif
     matrix_init_user();
 }
+// */
