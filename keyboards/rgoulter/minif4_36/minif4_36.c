@@ -81,7 +81,6 @@ void board_init(void) {
 }
 
 void matrix_init_kb(void) {
-
 #ifdef RGB_MATRIX_ENABLE
 #ifdef SPLIT_KEYBOARD
     if (!is_keyboard_left()) {

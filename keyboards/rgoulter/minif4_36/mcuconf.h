@@ -23,11 +23,12 @@
 
 #include_next <mcuconf.h>
 
+#ifdef OLED_DRIVER_ENABLE
 #undef STM32_I2C_USE_I2C1
 #define STM32_I2C_USE_I2C1 TRUE
+#endif
 
+#ifdef RGB_MATRIX_ENABLE
 #undef STM32_PWM_USE_TIM5
 #define STM32_PWM_USE_TIM5 TRUE
-
-// #undef STM32_SERIAL_USE_USART1
-// #define STM32_SERIAL_USE_USART1 TRUE
+#endif
