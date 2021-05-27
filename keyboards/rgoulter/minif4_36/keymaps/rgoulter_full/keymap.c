@@ -181,7 +181,12 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     oled_scroll_set_area(0, 0);
     oled_scroll_set_speed(0);
-    if (!is_keyboard_master()) {
+
+    // For simplicity,
+    // this only allows the left-hand board to be master.
+    // If the right-hand board is used as master,
+    // the OLEDs are rendered "upside down".
+    if (is_keyboard_master()) {
         return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
     }
 
