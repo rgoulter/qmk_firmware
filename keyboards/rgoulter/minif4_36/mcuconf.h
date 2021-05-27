@@ -30,8 +30,8 @@
 #ifdef RGB_MATRIX_ENABLE
 // The default DMA1 stream used in mcuconf.h
 // collides with the A0 AF02 DMA1 usage.
-#undef STM32_I2C_I2C1_RX_DMA_STREAM
-#define STM32_I2C_I2C1_RX_DMA_STREAM        STM32_DMA_STREAM_ID(1, 5)
+// #undef STM32_I2C_I2C1_RX_DMA_STREAM
+// #define STM32_I2C_I2C1_RX_DMA_STREAM        STM32_DMA_STREAM_ID(1, 5)
 #endif
 
 #endif

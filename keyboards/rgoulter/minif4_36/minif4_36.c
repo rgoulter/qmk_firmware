@@ -109,9 +109,8 @@ led_config_t g_led_config = {
 #endif
 
 void board_init(void) {
-    // B9 is configured as I2C1_SDA in the board file; that function must be
-    // disabled before using B7 as I2C1_SDA.
-    setPinInputHigh(B9);
+  AFIO->MAPR |= AFIO_MAPR_I2C1_REMAP;
+  AFIO->MAPR |= AFIO_MAPR_TIM2_REMAP_NOREMAP;
 }
 
 void matrix_init_kb(void) {

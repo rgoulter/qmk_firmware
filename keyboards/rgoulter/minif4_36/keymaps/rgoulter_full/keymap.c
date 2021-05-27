@@ -165,7 +165,8 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 void keyboard_post_init_user(void) {
 #ifdef RGB_MATRIX_ENABLE
   // rgb_matrix_mode_noeeprom(RGB_MATRIX_MULTISPLASH);
-  rgb_matrix_mode_noeeprom(RGB_MATRIX_CYCLE_PINWHEEL);
+  // rgb_matrix_mode_noeeprom(RGB_MATRIX_CYCLE_PINWHEEL);
+  rgb_matrix_mode_noeeprom(RGB_MATRIX_CYCLE_ALL);
 #endif
 }
 
