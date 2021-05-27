@@ -29,3 +29,7 @@
 #define RGB_DI_PIN A1
 
 #define ADC_PIN A0
+
+
+#define I2C1_SCL 8
+#define I2C1_SDA 9
