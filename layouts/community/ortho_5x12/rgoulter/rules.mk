@@ -1,0 +1,7 @@
+RAW_ENABLE = no
+
+RGBLIGHT_ENABLE = yes
+
+COMBO_ENABLE = yes
+
+LEADER_ENABLE = yes
