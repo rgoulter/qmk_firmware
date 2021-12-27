@@ -76,21 +76,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Same QWERTY as default of X-2
 // Pinky-outer-column
 [_QWERTY] = LAYOUT_wrapper( \
-    KC_GRV,  ___SEG5_12345___,                            ___SEG5_67890___, KC_BSPC, \
-    KC_TAB,  ___SEG5_QWERTY_LHS_SIMPLE_1___,              ___SEG5_QWERTY_RHS_SIMPLE_1___, KC_BSPC,     \
-    KC_ESC,  ___SEG5_QWERTY_LHS_SIMPLE_2___,              ___SEG5_QWERTY_RHS_SIMPLE_2___, RCTLENT,  \
-    KC_LSFT, ___SEG5_QWERTY_LHS_SIMPLE_3___,              ___SEG5_QWERTY_RHS_SIMPLE_3___, _______,       \
-    FN,      KC_LCTL, KC_LALT, KC_LGUI, LOWER, KC_SPC,    KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+    KC_GRV,  ___SEG5_12345___,                            ___SEG5_67890___,                          KC_BSPC, \
+    KC_TAB,  ___SEG5_QWERTY_LHS_SIMPLE_1___,              ___SEG5_QWERTY_RHS_SIMPLE_1___,            KC_DEL,     \
+    KC_ESC,  ___SEG5_QWERTY_LHS_SIMPLE_2___,              ___SEG5_QWERTY_RHS_SIMPLE_2___,            KC_QUOT,  \
+    KC_LSFT, ___SEG5_QWERTY_LHS_SIMPLE_3___,              ___SEG5_QWERTY_RHS_SIMPLE_3___,            KC_ENT,       \
+    FN,      KC_LCTL, KC_LALT, KC_LGUI, LOWER, KC_SPC,    KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP, KC_RGHT \
 ),
 
+
+// GAMING: No home row mods, but QWERTY.
+// Bottom row half for gaming, half for typing (e.g. console commands).
 // XXX: not using raise2; but, it doesn't fit here, either.
 // Pinky-outer-column
 [_GAMING] = LAYOUT_wrapper( \
-    KC_GESC, ___SEG5_12345___,                           ___SEG5_67890___, KC_BSPC, \
-    KC_TAB,  ___SEG5_QWERTY_LHS_SIMPLE_1___,             ___SEG5_QWERTY_RHS_SIMPLE_1___, KC_BSPC,  \
-    KC_CAPS, ___SEG5_QWERTY_LHS_SIMPLE_2___,             ___SEG5_QWERTY_RHS_SIMPLE_2___, KC_ENTER,  \
-    KC_LSFT, ___SEG5_QWERTY_LHS_SIMPLE_3___,             ___SEG5_QWERTY_RHS_SIMPLE_3___, KC_RSFT,  \
-    KC_LCTL, KC_LGUI, KC_LALT, KC_ESC, LOWER, KC_SPC,    KC_SPC, RAISE, ___SEG4_NAV_LDUR___ \
+    KC_GRV,  ___SEG5_12345___,                              ___SEG5_67890___,               KC_BSPC, \
+    KC_TAB,  ___SEG5_QWERTY_LHS_SIMPLE_1___,                ___SEG5_QWERTY_RHS_SIMPLE_1___, KC_DEL,  \
+    KC_CAPS, ___SEG5_QWERTY_LHS_SIMPLE_2___,                ___SEG5_QWERTY_RHS_SIMPLE_2___, KC_QUOT,  \
+    KC_LSFT, ___SEG5_QWERTY_LHS_SIMPLE_3___,                ___SEG5_QWERTY_RHS_SIMPLE_3___, KC_ENT,  \
+    KC_LCTL, KC_LGUI, KC_LALT, LWR_TAB, LWR_ESC, KC_SPC,    RS2_BSP, RSE_ENT, ___SEG4_NAV_LDUR___ \
 ),
 
 // XXX: Let's ... move the function keys elsewhere?
