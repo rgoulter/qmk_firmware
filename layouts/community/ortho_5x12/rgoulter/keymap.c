@@ -66,10 +66,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Dvorak, with Home-Row Mods
 // Pinky-outer-column
 [_DVORAK] = LAYOUT_wrapper( \
-    __SEG12_XXXXXXX__, \
-    KC_TAB,  ___SEG5_DVORAK_LHS_1___,                       ___SEG5_DVORAK_RHS_1___, KC_BSPC,    \
-    LCTLESC, ___SEG5_DVORAK_LHS_2___,                       ___SEG5_DVORAK_RHS_2___, RCTLENT, \
-    _______, ___SEG5_DVORAK_LHS_3___,                       ___SEG5_DVORAK_RHS_3___, _______,      \
+    KC_GRV,  ___SEG5_12345___,                              ___SEG5_67890___,                            KC_BSPC, \
+    KC_TAB,  ___SEG5_DVORAK_LHS_1___,                       ___SEG5_DVORAK_RHS_1___,                     KC_BSPC,    \
+    LCTLESC, ___SEG5_DVORAK_LHS_2___,                       ___SEG5_DVORAK_RHS_2___,                     RCTLENT, \
+    _______, ___SEG5_DVORAK_LHS_3___,                       ___SEG5_DVORAK_RHS_3___,                     _______,      \
     FN,      _______, _______, LWR_TAB, LWR_ESC, KC_SPC,    RS2_BSP, RSE_ENT, _______, _______, _______, _______
 ),
 
@@ -83,17 +83,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     FN,      KC_LCTL, KC_LALT, KC_LGUI, LOWER, KC_SPC,    KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP, KC_RGHT \
 ),
 
-
 // GAMING: No home row mods, but QWERTY.
 // Bottom row half for gaming, half for typing (e.g. console commands).
 // XXX: not using raise2; but, it doesn't fit here, either.
 // Pinky-outer-column
 [_GAMING] = LAYOUT_wrapper( \
-    KC_GRV,  ___SEG5_12345___,                              ___SEG5_67890___,               KC_BSPC, \
-    KC_TAB,  ___SEG5_QWERTY_LHS_SIMPLE_1___,                ___SEG5_QWERTY_RHS_SIMPLE_1___, KC_DEL,  \
-    KC_CAPS, ___SEG5_QWERTY_LHS_SIMPLE_2___,                ___SEG5_QWERTY_RHS_SIMPLE_2___, KC_QUOT,  \
-    KC_LSFT, ___SEG5_QWERTY_LHS_SIMPLE_3___,                ___SEG5_QWERTY_RHS_SIMPLE_3___, KC_ENT,  \
-    KC_LCTL, KC_LGUI, KC_LALT, LWR_TAB, LWR_ESC, KC_SPC,    RS2_BSP, RSE_ENT, ___SEG4_NAV_LDUR___ \
+    KC_GRV,  ___SEG5_12345___,                             ___SEG5_67890___,               KC_BSPC, \
+    KC_TAB,  ___SEG5_QWERTY_LHS_SIMPLE_1___,               ___SEG5_QWERTY_RHS_SIMPLE_1___, KC_DEL,  \
+    KC_CAPS, ___SEG5_QWERTY_LHS_SIMPLE_2___,               ___SEG5_QWERTY_RHS_SIMPLE_2___, KC_QUOT,  \
+    KC_LSFT, ___SEG5_QWERTY_LHS_SIMPLE_3___,               ___SEG5_QWERTY_RHS_SIMPLE_3___, KC_ENT,  \
+    KC_LCTL, KC_LGUI, KC_LALT, KC_TAB, LWR_ESC, KC_SPC,    KC_BSPC, RSE_ENT, ___SEG4_NAV_LDUR___ \
 ),
 
 // XXX: Let's ... move the function keys elsewhere?
@@ -109,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // Pinky-outer-column
 [_LOWER2] = LAYOUT_wrapper( \
-    __SEG12_XXXXXXX__, \
+    _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, \
     _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, \
     _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, \
     _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, \
@@ -127,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // Pinky-outer-column
 [_RAISE2] = LAYOUT_wrapper( \
-    __SEG12_XXXXXXX__, \
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
@@ -167,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______,    _______, _______, _______, RGB_VAD, RGB_VAI, _______,
     _______, _______, _______, _______, _______, _______,    _______, _______, _______, RGB_SAD, RGB_SAI, _______,
     _______, _______, _______, _______, _______, _______,    _______, _______, RGB_TOG, RGB_HUD, RGB_HUI, RGB_MOD,
-    _______, _______, _______, _______, _______, _______,    _______, _______, BL_TOGG, BL_DEC,  BL_INC,  BL_BRTG
+    _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______
 )
 
 };
