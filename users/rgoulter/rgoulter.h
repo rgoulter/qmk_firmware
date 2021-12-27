@@ -1,6 +1,8 @@
 #pragma once
 
 #define LWR_TAB LT(_LOWER, KC_TAB)
+#define LWR_ESC LT(_LOWER, KC_ESC)
+
 #define LW2_ESC LT(_LOWER2, KC_ESC)
 
 #define RS2_BSP LT(_RAISE2, KC_BSPC)
@@ -86,7 +88,7 @@
   _______, _______, _______, LWR_TAB, LW2_ESC,    KC_SPC,      RS2_BSP,    RSE_ENT, _______, _______, _______
 
 #define ___BASE_BOTTOM_ROW_12___ \
-  _______, _______, _______, LWR_TAB, LW2_ESC,    KC_SPC, KC_SPC,     RS2_BSP,    RSE_ENT, _______, _______, _______
+  FN,      _______, _______, LWR_TAB, LW2_ESC,    KC_SPC, KC_SPC,     RS2_BSP,    RSE_ENT, _______, _______, _______
 
 
 // macOS
