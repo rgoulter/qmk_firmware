@@ -153,7 +153,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ADJUST] = LAYOUT(
     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,      KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,       \
     _______, RESET,   _______, _______, _______, _______,    _______, _______, _______, _______, _______, KC_DEL,       \
-    KC_CAPS, _______, _______, _______, _______, _______,    _______, QWERTY,  GAMING,  DVORAK,  CHILDPROOF,  _______,  \
+    KC_CAPS, DM_REC2, DM_REC1, DM_PLY2, DM_PLY1, DM_RSTP,    _______, QWERTY,  GAMING,  DVORAK,  CHILDPROOF,  _______,  \
     _______, _______, _______, _______, _______, _______,    _______, _______, KC_BTN1, KC_BTN2, KC_WH_D, KC_WH_U,     \
     _______, _______, _______, _______, _______, _______,    _______, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R      \
 ),
