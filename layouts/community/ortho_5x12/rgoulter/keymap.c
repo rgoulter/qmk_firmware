@@ -33,12 +33,14 @@ enum custom_keycodes {
 };
 
 enum host_os {
-  _LINUX,
-  _MACOS,
-  _WINDOWS,
+  _OS_LINUX,
+  _OS_MACOS,
+  _OS_WIN,
 };
+typedef enum host_os host_os_t;
 
 char quarter_count = 0;
+host_os_t current_os = _OS_LINUX;
 
 #define QWERTY     DF(_QWERTY)
 #define DVORAK     DF(_DVORAK)
@@ -156,7 +158,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,      KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,       \
     _______, RESET,   _______, _______, _______, _______,    _______, _______, _______, _______, _______, KC_DEL,       \
     KC_CAPS, DM_REC2, DM_REC1, DM_PLY2, DM_PLY1, DM_RSTP,    _______, QWERTY,  GAMING,  DVORAK,  CHILDPROOF,  _______,  \
-    _______, _______, _______, _______, _______, _______,    _______, _______, KC_BTN1, KC_BTN2, KC_WH_D, KC_WH_U,     \
+    _______, _______, OSWIN,   OSMACOS, OSLINUX, _______,    _______, _______, KC_BTN1, KC_BTN2, KC_WH_D, KC_WH_U,     \
     _______, _______, _______, _______, _______, _______,    _______, _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R      \
 ),
 
@@ -177,6 +179,16 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+  case OSLINUX:
+    current_os = _OS_LINUX;
+    return false;
+  case OSMACOS:
+    current_os = _OS_MACOS;
+    return false;
+  case OSWIN:
+    current_os = _OS_WIN;
+    return false;
+
   case QUARTER:
     // corner
     if (record->event.pressed) {
@@ -220,12 +232,32 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
   switch(combo_index) {
     case DESKTOP_GO_LEFT:
       if (pressed) {
-        tap_code16(CODE16_LINUX_DESKTOP_LEFT);
+        switch(current_os) {
+          case _OS_LINUX:
+            tap_code16(CODE16_LINUX_DESKTOP_LEFT);
+            break;
+          case _OS_MACOS:
+            tap_code16(CODE16_MACOS_DESKTOP_LEFT);
+            break;
+          case _OS_WIN:
+            tap_code16(CODE16_WIN_DESKTOP_LEFT);
+            break;
+        }
       }
       break;
     case DESKTOP_GO_RIGHT:
       if (pressed) {
-        tap_code16(CODE16_LINUX_DESKTOP_RIGHT);
+        switch(current_os) {
+          case _OS_LINUX:
+            tap_code16(CODE16_LINUX_DESKTOP_RIGHT);
+            break;
+          case _OS_MACOS:
+            tap_code16(CODE16_MACOS_DESKTOP_RIGHT);
+            break;
+          case _OS_WIN:
+            tap_code16(CODE16_WIN_DESKTOP_RIGHT);
+            break;
+        }
       }
       break;
     case LEAD:
