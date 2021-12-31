@@ -51,13 +51,6 @@
 #define SPLIT_TRANSPORT_MIRROR
 #endif
 
-// Rotary Encoders
-#ifdef ENCODER_ENABLE
-#define ENCODERS_PAD_A { B12 }
-#define ENCODERS_PAD_B { B13 }
-// RE switch is B14
-#endif
-
 // RGB Matrix
 #ifdef RGB_MATRIX_ENABLE
 

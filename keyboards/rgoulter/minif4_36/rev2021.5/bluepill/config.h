@@ -17,12 +17,18 @@
 
 // #include "config_common.h"
 
-#define DIRECT_PINS { \
-    { B12, B15,  A9,  A6,  B3 },                      \
-    { B13,  A8, A10, A15,  A0 },                       \
-    { B14, B10,  A7,  A5,  B5 },                            \
-    { NO_PIN, B0, A3, A1, C13 }                                  \
+#define DIRECT_PINS {            \
+    { B12, B15,  A9,  A6,  B3 }, \
+    { B13,  A8, A10, A15,  A0 }, \
+    { B14, B10,  A7,  A5,  B5 }, \
+    { NO_PIN, B0, A3, A1, C13 }  \
 }
+
+// Rotary Encoders
+#ifdef ENCODER_ENABLE
+#define ENCODERS_PAD_A { A4 }
+#define ENCODERS_PAD_B { B4 }
+#endif
 
 // RGB Matrix
 #ifdef RGB_MATRIX_ENABLE

@@ -24,6 +24,13 @@
    { NO_PIN, B14, A5, A4, A3 }     \
 }
 
+// Rotary Encoders
+#ifdef ENCODER_ENABLE
+#define ENCODERS_PAD_A { B12 }
+#define ENCODERS_PAD_B { B13 }
+// RE switch is B14
+#endif
+
 // RGB Matrix
 #ifdef RGB_MATRIX_ENABLE
 #define RGB_DI_PIN A0
