@@ -56,6 +56,7 @@
 #define ___SEG3_MOU_BTN___ KC_BTN1, KC_BTN2, KC_BTN3
 
 #define ___SEG4_MED___ KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT
+#define ___SEG4_MED_ALT___ KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
 
 #define ___SEG5_12345___ KC_1, KC_2, KC_3, KC_4, KC_5
 #define ___SEG5_67890___ KC_6, KC_7, KC_8, KC_9, KC_0

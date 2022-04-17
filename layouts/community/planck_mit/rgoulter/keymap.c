@@ -31,12 +31,14 @@ enum custom_keycodes {
 };
 
 enum host_os {
-  _LINUX,
-  _MACOS,
-  _WINDOWS,
+  _OS_LINUX,
+  _OS_MACOS,
+  _OS_WIN,
 };
+typedef enum host_os host_os_t;
 
 char quarter_count = 0;
+host_os_t current_os = _OS_LINUX;
 
 #define QWERTY     DF(_QWERTY)
 #define DVORAK     DF(_DVORAK)
@@ -71,19 +73,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                            ___BASE_BOTTOM_ROW___ \
 ),
 
-// XXX: Let's ... move the function keys elsewhere?
-// XXX: Let's ... move the cursor keys so they're on a navigation layer with Home/PgUp/PgDown/End, arrow keys etc.
-[_LOWER] = LAYOUT_planck_mit( \
+[_LOWER] = LAYOUT_wrapper( \
   KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_GRV,  KC_PIPE, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, \
-  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_INS,  KC_QUES, KC_F6,   KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, \
-  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  _______, _______, KC_F12,  _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______,     _______,      _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+  _______, _______, _______, _______, _______, KC_INS,  KC_QUES, _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, \
+  _______, KC_CUT,  KC_COPY, KC_PSTE, _______, _______, _______,  ___SEG4_MED___, KC_MPLY, \
+  _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______ \
 ),
 
-[_LOWER2] = LAYOUT_planck_mit( \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+[_LOWER2] = LAYOUT_wrapper( \
+  KC_F12,  KC_F7,   KC_F8,   KC_F9,   _______, _______, _______, _______, _______, _______, _______, _______, \
+  KC_F11,  KC_F4,   KC_F5,   KC_F6,   _______, _______, _______, ___SEG4_NAV_LDUR___, _______, \
+  KC_F10,  KC_F1,   KC_F2,   KC_F3,   _______, _______, _______, ___SEG4_NAV3___,     _______, \
   _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______ \
 ),
 
@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_TILD, KC_BSLS, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    \
   _______, _______, _______, _______, _______, KC_DEL,  KC_SLSH, _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, \
   _______, KC_CUT,  KC_COPY, KC_PSTE, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______,    _______,       _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY \
+  _______, _______, _______, _______, _______,    _______,       _______, _______, _______, _______, _______ \
 ),
 
 [_RAISE2] = LAYOUT_planck_mit( \
@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ADJUST] =  LAYOUT_planck_mit( \
   RESET,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, RGB_SPI, RGB_SPD, _______,
   _______, _______, _______, _______, _______, _______, _______, QWERTY,  XXXXXXX, DVORAK,  CHILDPROOF, XXXXXXX, \
-  _______, _______, _______, _______, _______, _______, _______, _______, KC_BTN1, KC_BTN2, KC_WH_D, KC_WH_U, \
+  _______, _______, OSWIN,   OSMACOS, OSLINUX, _______, _______, _______, KC_BTN1, KC_BTN2, KC_WH_D, KC_WH_U, \
   _______, _______, _______, _______, _______,     _______,      _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R \
 )
 
@@ -130,6 +130,16 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+  case OSLINUX:
+    current_os = _OS_LINUX;
+    return false;
+  case OSMACOS:
+    current_os = _OS_MACOS;
+    return false;
+  case OSWIN:
+    current_os = _OS_WIN;
+    return false;
+
   case QUARTER:
     // corner
     if (record->event.pressed) {
@@ -173,12 +183,32 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
   switch(combo_index) {
     case DESKTOP_GO_LEFT:
       if (pressed) {
-        tap_code16(CODE16_LINUX_DESKTOP_LEFT);
+        switch(current_os) {
+          case _OS_LINUX:
+            tap_code16(CODE16_LINUX_DESKTOP_LEFT);
+            break;
+          case _OS_MACOS:
+            tap_code16(CODE16_MACOS_DESKTOP_LEFT);
+            break;
+          case _OS_WIN:
+            tap_code16(CODE16_WIN_DESKTOP_LEFT);
+            break;
+        }
       }
       break;
     case DESKTOP_GO_RIGHT:
       if (pressed) {
-        tap_code16(CODE16_LINUX_DESKTOP_RIGHT);
+        switch(current_os) {
+          case _OS_LINUX:
+            tap_code16(CODE16_LINUX_DESKTOP_RIGHT);
+            break;
+          case _OS_MACOS:
+            tap_code16(CODE16_MACOS_DESKTOP_RIGHT);
+            break;
+          case _OS_WIN:
+            tap_code16(CODE16_WIN_DESKTOP_RIGHT);
+            break;
+        }
       }
       break;
     case LEAD:
@@ -200,11 +230,7 @@ void matrix_scan_user(void) {
     }
 
     SEQ_ONE_KEY(KC_G) {
-      SEND_STRING("kubectl get pods --namespace production");
-    }
-
-    SEQ_ONE_KEY(KC_N) {
-      SEND_STRING("--namespace production");
+      SEND_STRING("kubectl get pods");
     }
   }
 }
