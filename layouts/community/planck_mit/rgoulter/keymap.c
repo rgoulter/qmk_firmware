@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT_wrapper( \
   KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_GRV,  KC_PIPE, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, \
   _______, _______, _______, _______, _______, KC_INS,  KC_QUES, _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, \
-  _______, KC_CUT,  KC_COPY, KC_PSTE, _______, _______, _______,  ___SEG4_MED___, KC_MPLY, \
+  _______, KC_CUT,  KC_COPY, KC_PSTE, _______, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______ \
 ),
 
@@ -119,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ADJUST] =  LAYOUT_planck_mit( \
   RESET,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, RGB_SPI, RGB_SPD, _______,
   _______, _______, _______, _______, _______, _______, _______, QWERTY,  XXXXXXX, DVORAK,  CHILDPROOF, XXXXXXX, \
-  _______, _______, OSWIN,   OSMACOS, OSLINUX, _______, _______, _______, _______, _______, _______, _______, \
+  _______, _______, OSWIN,   OSMACOS, OSLINUX, _______, _______, ___SEG4_MED___, KC_MPLY, \
   _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______ \
 )
 
