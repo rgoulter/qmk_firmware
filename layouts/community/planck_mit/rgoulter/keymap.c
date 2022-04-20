@@ -75,9 +75,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_LOWER] = LAYOUT_wrapper( \
-  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_GRV,  KC_PIPE, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, \
-  _______, _______, _______, _______, _______, KC_INS,  KC_QUES, _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, \
-  _______, KC_CUT,  KC_COPY, KC_PSTE, _______, _______, _______, _______, _______, _______, _______, _______, \
+  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_TILD, KC_PIPE, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, \
+  KC_TILD, _______, _______, _______, _______, KC_INS,  KC_QUES, KC_INS,  KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, \
+  KC_QUES, KC_CUT,  KC_COPY, KC_PSTE, KC_PIPE, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______ \
 ),
 
@@ -89,9 +89,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_RAISE] = LAYOUT_planck_mit( \
-  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_TILD, KC_BSLS, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    \
-  _______, _______, _______, _______, _______, KC_DEL,  KC_SLSH, _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, \
-  _______, KC_CUT,  KC_COPY, KC_PSTE, _______, _______, _______, _______, _______, _______, _______, _______, \
+  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_GRV,  KC_BSLS, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    \
+  KC_GRV,  _______, _______, _______, _______, KC_DEL,  KC_SLSH, KC_DEL,  KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, \
+  KC_SLSH, KC_CUT,  KC_COPY, KC_PSTE, KC_BSLS, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______,    _______,       _______, _______, _______, _______, _______ \
 ),
 
@@ -116,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, KC_0,    KC_0,    KC_DOT, _______,     _______,      _______, _______,    _______,    _______,  _______  \
 ),
 
-[_ADJUST] =  LAYOUT_planck_mit( \
+[_ADJUST] =  LAYOUT_wrapper( \
   RESET,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, RGB_SPI, RGB_SPD, _______,
   _______, _______, _______, _______, _______, _______, _______, QWERTY,  XXXXXXX, DVORAK,  CHILDPROOF, XXXXXXX, \
   _______, _______, OSWIN,   OSMACOS, OSLINUX, _______, _______, ___SEG4_MED___, KC_MPLY, \

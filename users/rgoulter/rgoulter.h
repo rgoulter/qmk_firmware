@@ -24,16 +24,18 @@
 #define LSFTT_F LSFT_T(KC_F)
 
 /* Home Row Mods, Dvorak, RH */
-#define RSFTT_H RSFT_T(KC_H)
-#define RCTLT_T RCTL_T(KC_T)
-#define RGUIT_N RGUI_T(KC_N)
-#define RALTT_S RALT_T(KC_S)
+/* Use LHS mods instead of RHS. */
+#define RSFTT_H LSFT_T(KC_H)
+#define RCTLT_T LCTL_T(KC_T)
+#define RGUIT_N LGUI_T(KC_N)
+#define RALTT_S LALT_T(KC_S)
 
 /* Home Row Mods, QWERTY, RH */
-#define RSFTT_J RSFT_T(KC_J)
-#define RCTLT_K RCTL_T(KC_K)
-#define RGUIT_L RGUI_T(KC_L)
-#define RALTTSC RALT_T(KC_SCLN)
+/* Use LHS mods instead of RHS. */
+#define RSFTT_J LSFT_T(KC_J)
+#define RCTLT_K LCTL_T(KC_K)
+#define RGUIT_L LGUI_T(KC_L)
+#define RALTTSC LALT_T(KC_SCLN)
 
 #define ___SEG3_123___ KC_1, KC_2, KC_3
 #define ___SEG3_456___ KC_4, KC_5, KC_6
