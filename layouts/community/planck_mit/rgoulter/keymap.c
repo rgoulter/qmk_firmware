@@ -55,9 +55,9 @@ host_os_t current_os = _OS_LINUX;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-// XXX: find place for the PrtScr, ScrlLck, Pause keys;
 // XXX: aim for one-handed numpad?
 // XXX: aim for one-handed cursor keys?
+// XXX: the mouse keys are unreachable
 
 [_DVORAK] = LAYOUT_wrapper( \
   ___SEG5_DVORAK_LHS_1___, KC_TAB,     KC_BSPC, ___SEG5_DVORAK_RHS_1___,    \
@@ -81,9 +81,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_LOWER2] = LAYOUT_wrapper( \
-  KC_F12,  KC_F7,   KC_F8,   KC_F9,   _______, _______, _______, _______, _______, _______, _______, _______, \
-  KC_F11,  KC_F4,   KC_F5,   KC_F6,   _______, _______, _______, ___SEG4_NAV_LDUR___, _______, \
-  KC_F10,  KC_F1,   KC_F2,   KC_F3,   _______, _______, _______, ___SEG4_NAV3___,     _______, \
+  KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_PSCR, _______, _______, _______, _______, _______, _______, _______, \
+  KC_F11,  KC_F4,   KC_F5,   KC_F6,   KC_SCRL, _______, _______, ___SEG4_NAV_LDUR___, _______, \
+  KC_F10,  KC_F1,   KC_F2,   KC_F3,   KC_PAUS, _______, _______, ___SEG4_NAV3___,     _______, \
   _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______ \
 ),
 
