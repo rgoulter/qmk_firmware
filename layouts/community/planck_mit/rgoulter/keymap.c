@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT_wrapper( \
   KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_TILD, KC_PIPE, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, \
   KC_TILD, _______, _______, _______, _______, KC_INS,  KC_QUES, KC_INS,  KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, \
-  KC_QUES, KC_CUT,  KC_COPY, KC_PSTE, KC_PIPE, _______, _______, _______, _______, _______, _______, _______, \
+  KC_QUES, KC_CUT,  KC_COPY, KC_PSTE, KC_PIPE, _______, _______, _______, _______, _______, KC_QUES, KC_PIPE, \
   _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______ \
 ),
 
@@ -88,10 +88,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______ \
 ),
 
+/*
+ * not sure where slash/backslash should be
+ * inner columns are terrible for frequent keys,
+ * the inner-index column is annoying for
+ * the same side as the layer.
+ */
+/*
+ * n.b. HID Cut/Copy/Paste aren't widely supported.
+ *
+ * e.g. Works in Firefox, Slack, VSCode, Alacritty.
+ * e.g. Doesn't work out of the box with Emacs (unbound),
+ *       Kitty, or even some programs like Kicad or OpenScad.
+ */
 [_RAISE] = LAYOUT_planck_mit( \
   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_GRV,  KC_BSLS, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    \
   KC_GRV,  _______, _______, _______, _______, KC_DEL,  KC_SLSH, KC_DEL,  KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, \
-  KC_SLSH, KC_CUT,  KC_COPY, KC_PSTE, KC_BSLS, _______, _______, _______, _______, _______, _______, _______, \
+  KC_SLSH, KC_CUT,  KC_COPY, KC_PSTE, KC_BSLS, _______, _______, _______, _______, _______, KC_SLSH, KC_BSLS, \
   _______, _______, _______, _______, _______,    _______,       _______, _______, _______, _______, _______ \
 ),
 
