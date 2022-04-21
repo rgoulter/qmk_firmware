@@ -71,6 +71,20 @@
 #define ___SEG5_DVORAK_RHS_2___ KC_D,    RSFTT_H, RCTLT_T, RGUIT_N, RALTT_S
 #define ___SEG5_DVORAK_RHS_3___ KC_B,    KC_M,    KC_W,    KC_V,    KC_Z
 
+/*
+ * QWERTY mod: Swap the `'` and `/`.
+ *
+ * Within the 3x10 grid:
+ *   Dvorak's symbol keys: ',. and ;
+ *   QWERTY's symbol keys: ,./ and ;
+ *
+ * thus, Dvorak *needs* `/` on other layers,
+ *       QWERTY *needs* `'` on other layers.
+ *
+ * Instead, it's easier to swap `'` and `/` for QWERTY,
+ *  so that it also needs `/` on other layers.
+ */
+
 #define ___SEG5_QWERTY_LHS_1___ KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
 #define ___SEG5_QWERTY_LHS_2___ LALTT_A, LGUIT_S, LCTLT_D, LSFTT_F, KC_G
 #define ___SEG5_QWERTY_LHS_3___ KC_Z,    KC_X,    KC_C,    KC_V,    KC_B

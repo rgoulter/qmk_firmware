@@ -74,6 +74,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                            ___BASE_BOTTOM_ROW___ \
 ),
 
+/*
+ * QWERTY mod: Swap the `'` and `/`.
+ *
+ * Within the 3x10 grid:
+ *   Dvorak's symbol keys: ',. and ;
+ *   QWERTY's symbol keys: ,./ and ;
+ *
+ * thus, Dvorak *needs* `/` on other layers,
+ *       QWERTY *needs* `'` on other layers.
+ *
+ * Instead, it's easier to swap `'` and `/` for QWERTY,
+ *  so that it also needs `/` on other layers.
+ */
+
 [_LOWER] = LAYOUT_wrapper( \
   KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_TILD, KC_PIPE, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, \
   KC_TILD, _______, _______, _______, _______, KC_INS,  KC_QUES, KC_INS,  KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, \
