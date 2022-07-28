@@ -165,11 +165,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Same as default layer
 [_FN] = LAYOUT(
     _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______,    _______, _______, _______, RGB_VAD, RGB_VAI, _______,
-    _______, _______, _______, _______, _______, _______,    _______, _______, _______, RGB_SAD, RGB_SAI, _______,
-    _______, _______, _______, _______, _______, _______,    _______, _______, RGB_TOG, RGB_HUD, RGB_HUI, RGB_MOD,
+    KC_NUM,  KC_P7,   KC_P8,   KC_P9, _______, _______,    _______, _______, _______, RGB_VAD, RGB_VAI, _______,
+    _______, KC_P4,   KC_P5,   KC_P6, _______, _______,    _______, _______, _______, RGB_SAD, RGB_SAI, _______,
+    _______, KC_P1,   KC_P2,   KC_P3, _______, _______,    _______, _______, RGB_TOG, RGB_HUD, RGB_HUI, RGB_MOD,
     _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______
 )
+
 
 };
 
@@ -286,4 +287,8 @@ void matrix_scan_user(void) {
       SEND_STRING("--namespace production");
     }
   }
+}
+
+void keyboard_post_init_user(void) {
+  rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL + 4);
 }
