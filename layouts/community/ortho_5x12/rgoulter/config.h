@@ -17,7 +17,7 @@
  * function instead, in the case of holding the dual-role key after having
  * tapped it.
  */
-#define TAPPING_FORCE_HOLD
+#define TAPPING_FORCE_HOLD_PER_KEY
 
 #define TAPPING_TERM 200
 

@@ -426,3 +426,17 @@ void matrix_scan_user(void) {
 void keyboard_post_init_user(void) {
   rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL + 4);
 }
+
+bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LW2_SPC:
+            // tap then hold: repeat the tap
+            return false;
+        case RS2_BSP:
+            // tap then hold: repeat the tap
+            return false;
+        default:
+            // use the hold function
+            return true;
+    }
+}
