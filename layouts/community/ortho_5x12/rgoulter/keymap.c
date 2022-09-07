@@ -62,9 +62,6 @@ host_os_t current_os = _OS_LINUX;
 
 #define LAYOUT_wrapper(...)            LAYOUT_ortho_5x12(__VA_ARGS__)
 
-// XXX: aim for LHO / one-handed cursor keys?
-// XXX: aim for LHO / one-handed copy-paste?
-
 // XXX: Let's ... move the function keys away from LOWER layer.
 
 // XXX: not using raise2 (in QWERTY, GAMING); but, it doesn't fit here, either.
@@ -136,12 +133,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,   _______, _______, _______, XXXXXXX, _______,    _______, _______, KC_LEFT, KC_DOWN, KC_UP,     KC_RGHT
 ),
 
+// LOWER (II)
+//
+// - LHO Nav
+//   - inspired by Miryoku's inverted-T nav
+//     - ESDF (offset from WASD)
+//     - Home/End, Page Up/Down
+//     - CUA cut/copy/paste
+//     - CUA undo
+//
 // Pinky-outer-column
 [_LOWER2] = LAYOUT_wrapper( \
     _______,   _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,   _______,
-    _______,   _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,   _______,
-    _______,   _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,   _______,
-    _______,   _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,   _______,
+    _______,   KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_INS,     _______, _______, _______, _______, _______,   _______,
+    _______,   KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_CAPS,    _______, _______, _______, _______, _______,   _______,
+    _______,   U_UNDO,  U_CUT,   U_COPY,  U_PASTE, U_REDO,     _______, _______, _______, _______, _______,   _______,
     _______,   _______, _______, _______, _______, XXXXXXX,    _______, _______, _______, _______, _______,   _______
 ),
 
