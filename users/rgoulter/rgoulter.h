@@ -4,6 +4,7 @@
 #define LWR_ESC LT(_LOWER, KC_ESC)
 
 #define LW2_ESC LT(_LOWER2, KC_ESC)
+#define LW2_SPC LT(_LOWER2, KC_SPC)
 
 #define RS2_BSP LT(_RAISE2, KC_BSPC)
 #define RSE_ENT LT(_RAISE, KC_ENT)
