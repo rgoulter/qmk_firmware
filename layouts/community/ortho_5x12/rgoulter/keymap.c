@@ -236,6 +236,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  bool pressed = record->event.pressed;
   switch (keycode) {
   case OSLINUX:
     current_os = _OS_LINUX;
@@ -245,6 +246,82 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return false;
   case OSWIN:
     current_os = _OS_WIN;
+    return false;
+
+  case U_CUT:
+    if (pressed) {
+      switch(current_os) {
+        case _OS_LINUX:
+          tap_code16(CODE16_LINUX_CUT);
+          break;
+        case _OS_MACOS:
+          tap_code16(CODE16_MACOS_CUT);
+          break;
+        case _OS_WIN:
+          tap_code16(CODE16_WIN_CUT);
+          break;
+      }
+    }
+    return false;
+  case U_COPY:
+    if (pressed) {
+      switch(current_os) {
+        case _OS_LINUX:
+          tap_code16(CODE16_LINUX_COPY);
+          break;
+        case _OS_MACOS:
+          tap_code16(CODE16_MACOS_COPY);
+          break;
+        case _OS_WIN:
+          tap_code16(CODE16_WIN_COPY);
+          break;
+      }
+    }
+    return false;
+  case U_PASTE:
+    if (pressed) {
+      switch(current_os) {
+        case _OS_LINUX:
+          tap_code16(CODE16_LINUX_PASTE);
+          break;
+        case _OS_MACOS:
+          tap_code16(CODE16_MACOS_PASTE);
+          break;
+        case _OS_WIN:
+          tap_code16(CODE16_WIN_PASTE);
+          break;
+      }
+    }
+    return false;
+  case U_UNDO:
+    if (pressed) {
+      switch(current_os) {
+        case _OS_LINUX:
+          tap_code16(CODE16_LINUX_UNDO);
+          break;
+        case _OS_MACOS:
+          tap_code16(CODE16_MACOS_UNDO);
+          break;
+        case _OS_WIN:
+          tap_code16(CODE16_WIN_UNDO);
+          break;
+      }
+    }
+    return false;
+  case U_REDO:
+    if (pressed) {
+      switch(current_os) {
+        case _OS_LINUX:
+          tap_code16(CODE16_LINUX_REDO);
+          break;
+        case _OS_MACOS:
+          tap_code16(CODE16_MACOS_REDO);
+          break;
+        case _OS_WIN:
+          tap_code16(CODE16_WIN_REDO);
+          break;
+      }
+    }
     return false;
 
   case QUARTER:
