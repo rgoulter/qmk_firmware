@@ -351,10 +351,13 @@ enum combo_events {
   LEAD,
 };
 
-// can't be keys which have tap-hold
+// Combo keys can't (couldn't?) be keys which have tap-hold functionality.
+
+// Dvorak, JK is LHS, Lower
 const uint16_t PROGMEM dsk_lower_left_combo[] = {KC_J, KC_K, COMBO_END};
-// const uint16_t PROGMEM dsk_lower_left_combo[] = {LCTLT_E, LSFTT_U, COMBO_END};
+// Dvorak, MW is RHS, Lower
 const uint16_t PROGMEM dsk_lower_right_combo[] = {KC_M, KC_W, COMBO_END};
+// Dvorak, ;Q is LHS, Lower-left
 const uint16_t PROGMEM dsk_lower_lead_combo[] = {KC_SCLN, KC_Q, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
