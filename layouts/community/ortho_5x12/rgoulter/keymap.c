@@ -185,7 +185,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // CHILDPROOF
 //
 // Because mashing the keys of a mechanical keyboard can be fun,
-// espeically for key-reactive RGB matrix effects.
+// especially for key-reactive RGB matrix effects.
 //
 // Pinky-outer-column
 [_CHILDPROOF] = LAYOUT_wrapper(
