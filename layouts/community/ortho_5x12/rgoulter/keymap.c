@@ -20,7 +20,6 @@ enum layers {
   _RAISE,
   _RAISE2,
   _CHILDPROOF,
-  _NUMPAD,
   _ADJUST,
   _FN,
 };
@@ -56,7 +55,6 @@ host_os_t current_os = _OS_LINUX;
 #define LOWER2     MO(_LOWER2)
 #define RAISE      MO(_RAISE)
 #define RAISE2     MO(_RAISE2)
-#define NUMPAD     MO(_NUMPAD)
 #define ADJUST     MO(_ADJUST)
 #define FN         MO(_FN)
 
@@ -84,9 +82,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //
 // Pinky-outer-column
 [_DVORAK] = LAYOUT_wrapper(
-    KC_GRV,    ___SEG5_12345___,                              ___SEG5_67890___,                               KC_BSPC,
-    KC_TAB,    ___SEG5_DVORAK_LHS_1___,                       ___SEG5_DVORAK_RHS_1___,                        KC_BSPC,
-    LCTLESC,   ___SEG5_DVORAK_LHS_2___,                       ___SEG5_DVORAK_RHS_2___,                        RCTLENT,
+    _______,   ___SEG5_12345___,                              ___SEG5_67890___,                               _______,
+    _______,   ___SEG5_DVORAK_LHS_1___,                       ___SEG5_DVORAK_RHS_1___,                        _______,
+    _______,   ___SEG5_DVORAK_LHS_2___,                       ___SEG5_DVORAK_RHS_2___,                        _______,
     _______,   ___SEG5_DVORAK_LHS_3___,                       ___SEG5_DVORAK_RHS_3___,                        _______,
     FN,        _______, _______, LWR_TAB, LWR_ESC, LW2_SPC,    RS2_BSP, RSE_ENT, _______, _______, _______,    _______
 ),
@@ -192,19 +190,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LOWER,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   RAISE
 ),
 
-// Pinky-outer-column
-[_NUMPAD] = LAYOUT_wrapper(
-    __SEG12_XXXXXXX__,
-    _______,   _______, _______, _______, _______, _______,    _______, _______, KC_7,    KC_8,    KC_9,      _______,
-    _______,   _______, _______, _______, _______, _______,    _______, _______, KC_4,    KC_5,    KC_6,      _______,
-    _______,   _______, _______, _______, _______, _______,    _______, _______, KC_1,    KC_2,    KC_3,      _______,
-    _______,   _______, _______, _______, _______, _______,    _______, _______, KC_0,    KC_0,    KC_DOT,    _______
-),
-
 // ADJUST
 //
-// - Function keys on top row
-//     I don't use this.
 // - RESET, under LHS, upper, pinky
 // - CAPS, LHS, middle, outer pinky column.
 // - Runtime OS selection
@@ -215,7 +202,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //
 // Pinky-outer-column
 [_ADJUST] = LAYOUT_wrapper(
-    KC_F1,     KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,      KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,    KC_F12,
+    _______,   _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,   _______,
     _______,   RESET,   _______, _______, _______, _______,    _______, ___SEG3_SYS___,            _______,   _______,
     KC_CAPS,   DM_REC2, DM_REC1, DM_PLY2, DM_PLY1, DM_RSTP,    _______, QWERTY,  GAMING,  DVORAK,  CHILDPROOF,  _______,
     _______,   _______, OSWIN,   OSMACOS, OSLINUX, _______,    _______, _______, KC_BTN1, KC_BTN2, KC_WH_D,   KC_WH_U,
