@@ -64,9 +64,8 @@ host_os_t current_os = _OS_LINUX;
 
 #define LAYOUT_wrapper(...)            LAYOUT_ortho_5x12(__VA_ARGS__)
 
-// XXX: aim for one-handed numpad?
-// XXX: aim for one-handed cursor keys?
-// XXX: aim for one-handed copy-paste?
+// XXX: aim for LHO / one-handed cursor keys?
+// XXX: aim for LHO / one-handed copy-paste?
 
 // XXX: Let's ... move the function keys away from LOWER layer.
 
@@ -77,6 +76,12 @@ host_os_t current_os = _OS_LINUX;
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // Dvorak, with Home-Row Mods
+//
+// - LHS thumb keys: Tab, Esc, Spc
+//     I don't use Tab frequently;
+//     for code, I rely on editorconfig & auto-formatting.
+// - RHS thumb keys: Bspc, Enter
+//
 // Pinky-outer-column
 [_DVORAK] = LAYOUT_wrapper(
     KC_GRV,    ___SEG5_12345___,                              ___SEG5_67890___,                               KC_BSPC,
@@ -87,6 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 // Same QWERTY as default of X-2
+//
 // Pinky-outer-column
 [_QWERTY] = LAYOUT_wrapper(
     KC_GRV,    ___SEG5_12345___,                            ___SEG5_67890___,                            KC_BSPC,
@@ -97,7 +103,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 // GAMING: No home row mods, but QWERTY.
-// Bottom row half for gaming, half for typing (e.g. console commands).
+//
+// Bottom row half for gaming,
+//  half for typing (e.g. console commands in games).
+//
 // Pinky-outer-column
 [_GAMING] = LAYOUT_wrapper( \
     KC_GRV,    ___SEG5_12345___,                             ___SEG5_67890___,                 KC_BSPC,
@@ -107,10 +116,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LCTL,   KC_LGUI, KC_LALT, KC_TAB, LWR_ESC, KC_SPC,    KC_BSPC, RSE_ENT, ___SEG4_NAV_LDUR___
 ),
 
-//  PAIR: '_' '+'
-//  PAIR: '{' '}'
-//  PAIR (pinky col): '|'
-//  PAIR (pinky col): '?'
+// LOWER
+//
+// - Number row
+// - Tild ('~'), LHS, upper, outer pinky column
+// - Ins, LHS, home row, outer pinky column
+// - Symbols:
+//   - PAIR: '_' '+'
+//   - PAIR: '{' '}'
+//   - PAIR (outer pinky col): '|'
+//          (outer pinky col): '?'
+// - Navigation keys (cursor keys, Home/etc.)
+// - Function keys, across home row and lower row
+//
 // Pinky-outer-column
 [_LOWER] = LAYOUT_wrapper( \
     __SEG12_XXXXXXX__, \
@@ -129,10 +147,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,   _______, _______, _______, _______, XXXXXXX,    _______, _______, _______, _______, _______,   _______
 ),
 
-//  PAIR: '-' '='
-//  PAIR: '[' ']'
-//  PAIR (pinky col): '\'
-//  PAIR (pinky col): '/'
+// RAISE
+//
+// - Number row
+// - Grv ('`'), LHS, upper, outer pinky column
+// - DEL, LHS, home row, outer pinky column
+// - Symbols:
+//   - PAIR: '-' '='
+//   - PAIR: '[' ']'
+//   - PAIR (outer pinky col): '\'
+//          (outer pinky col): '/'
+// - Media Keys
+// - Clipboard keys
+//
 // Pinky-outer-column
 [_RAISE] = LAYOUT_wrapper(
     __SEG12_XXXXXXX__,
@@ -151,6 +178,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,   _______, _______, _______, _______, _______,    XXXXXXX, _______, _______, _______, _______,   _______
 ),
 
+// CHILDPROOF
+//
+// Because mashing the keys of a mechanical keyboard can be fun,
+// espeically for key-reactive RGB matrix effects.
+//
 // Pinky-outer-column
 [_CHILDPROOF] = LAYOUT_wrapper(
     __SEG12_XXXXXXX__,
@@ -169,6 +201,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,   _______, _______, _______, _______, _______,    _______, _______, KC_0,    KC_0,    KC_DOT,    _______
 ),
 
+// ADJUST
+//
+// - Function keys on top row
+//     I don't use this.
+// - RESET, under LHS, upper, pinky
+// - CAPS, LHS, middle, outer pinky column.
+// - Runtime OS selection
+//     For OS-specific shortcuts, like "go desktop left"
+// - PrintScr/Syslock/Pause
+// - Default Layer Selection (QWERTY, Gaming, Dvorak, Childproof)
+// - Mouse (movement, buttons, scrolling).
+//
 // Pinky-outer-column
 [_ADJUST] = LAYOUT_wrapper(
     KC_F1,     KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,      KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,    KC_F12,
@@ -178,6 +222,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,   _______, _______, _______, XXXXXXX, _______,    _______, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_U,   KC_MS_R
 ),
 
+// FN
+//
+// - Numpad, actual numpad keys, LHO accessible.
+// - RGB control
+//
 // Same as default layer
 [_FN] = LAYOUT(
     _______,   _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,   _______,
