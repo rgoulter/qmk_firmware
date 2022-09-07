@@ -45,6 +45,9 @@ enum layers {
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+// Different from Miryoku: LHS thumb keys: {Tab, Esc, Spc} instead of {Esc, Spc, Tab}
+// Different from Miryoku: RHS thumb keys: {Tab, Esc, Spc} instead of {Esc, Spc, Tab}
+// Different from Miryoku: Dvorak: retain semicolon, instead of using slash.
 [_DVORAK] = LAYOUT_wrapper( \
   ___SEG5_DVORAK_LHS_1___,                           ___SEG5_DVORAK_RHS_1___,
   ___SEG5_DVORAK_LHS_2___,                           ___SEG5_DVORAK_RHS_2___,
@@ -52,6 +55,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                     TAB_MOUR, ESC_MEDR, SPC_NAVR,    BKSP_NSL, ENT_NSSL, DEL_FUNL
 ),
 
+// Different from Miryoku: LHS thumb keys: {Tab, Esc, Spc} instead of {Esc, Spc, Tab}
+// Different from Miryoku: RHS thumb keys: {Bksp, Ent, Del} instead of {Ent, Bspc, Del}
 [_QWERTY] = LAYOUT_wrapper( \
   ___SEG5_QWERTY_LHS_1___,                           ___SEG5_QWERTY_RHS_1___,
   ___SEG5_QWERTY_LHS_2___,                           ___SEG5_QWERTY_RHS_2___,
@@ -59,9 +64,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                      TAB_MOUR, ESC_MEDR, SPC_NAVR,    BKSP_NSL, ENT_NSSL, DEL_FUNL
 ),
 
+// XXX: Different from Miryoku: Nav, RHS, upper: TBI the convenience cut/copy/paste and undo/redo
 [_NAVR] = LAYOUT_wrapper( \
   _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______,    ___SEG4_NAV2___, _______,
+  _______, _______, _______, _______, _______,    ___SEG4_NAV2___, KC_CAPS,
   _______, _______, _______, _______, _______,    ___SEG4_NAV3___, KC_INS,
                     _______, _______, _______,    _______, _______, _______
 ),
@@ -73,6 +79,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                     _______, _______, _______,    ___SEG3_MOU_BTN___
 ),
 
+// Different from Miryoku: Media layer, RHS, lower: used to swap base layers
+// Different from Miryoku: Media layer, RHS: RGB doesn't follow Nav swap
+// Different from Miryoku: Media layer, RHS, non-nav column: no external power, no Bluetooth
 [_MEDR] = LAYOUT_wrapper( \
   _______, _______, _______, _______, _______,    RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI,
   _______, _______, _______, _______, _______,    ___SEG4_MED___, _______,
@@ -80,6 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                     _______, _______, _______,    KC_MPLY, KC_MSTP, KC_MUTE
 ),
 
+// Different from Miryoku: Number layer, LHS: GRV in middle & slash (rather than semicolon)
 [_NSL] = LAYOUT_wrapper( \
   KC_LBRC, ___SEG3_789___, KC_RBRC,        _______, _______, _______, _______, _______,
   KC_GRV,  ___SEG3_456___, KC_EQL,         _______, _______, _______, _______, _______,
@@ -87,6 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  KC_DOT, KC_0, KC_MINS,    _______, _______, _______
 ),
 
+// Different from Miryoku: Number layer, LHS: TILD in middle & slash (rather than colon)
 [_NSSL] = LAYOUT_wrapper( \
   KC_LCBR, ___SEG3_S789___, KC_RCBR,              _______, _______, _______, _______, _______,
   KC_TILD, ___SEG3_S456___, KC_PLUS,              _______, _______, _______, _______, _______,
@@ -95,9 +106,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_FUNL] = LAYOUT_wrapper( \
-  KC_F12, ___SEG3_F789___,   _______,           _______, _______, _______, _______, _______,
-  KC_F11, ___SEG3_F456___,   _______,           _______, _______, _______, _______, _______,
-  KC_F10, ___SEG3_F123___,   _______,           _______, _______, _______, _______, _______,
+  KC_F12, ___SEG3_F789___,   KC_PSCR,           _______, _______, _______, _______, _______,
+  KC_F11, ___SEG3_F456___,   KC_SCRL,           _______, _______, _______, _______, _______,
+  KC_F10, ___SEG3_F123___,   KC_PAUS,           _______, _______, _______, _______, _______,
                   _______, _______, _______,    _______, _______, _______
 ),
 
