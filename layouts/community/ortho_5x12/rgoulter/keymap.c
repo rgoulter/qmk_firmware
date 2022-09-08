@@ -202,7 +202,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // - CAPS, LHS, middle, outer pinky column.
 // - Runtime OS selection
 //     For OS-specific shortcuts, like "go desktop left"
-// - PrintScr/Syslock/Pause
+// - PrintScr/Scroll lock/Pause
 // - Default Layer Selection (QWERTY, Gaming, Dvorak, Childproof)
 // - Mouse (movement, buttons, scrolling).
 //
