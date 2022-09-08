@@ -44,9 +44,8 @@
 #ifdef RGBLIGHT_ENABLE
 #define RGBLIGHT_ANIMATIONS
 
-#define DRIVER_LED_TOTAL 4
-#define RGBLED_NUM 4
-#define RGBLIGHT_LED_MAP { 3, 2, 1, 0 }
+#define DRIVER_LED_TOTAL 70
+#define RGBLED_NUM 70
 
 #define RGBLIGHT_LIMIT_VAL 80
 #endif
