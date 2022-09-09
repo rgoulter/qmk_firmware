@@ -20,4 +20,8 @@
 #define HAL_USE_PWM TRUE
 #endif
 
+#ifdef RGB_MATRIX_ENABLE
+#define HAL_USE_PWM TRUE
+#endif
+
 #include_next <halconf.h>

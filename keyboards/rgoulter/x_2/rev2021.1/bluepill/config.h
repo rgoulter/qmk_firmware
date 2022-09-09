@@ -32,6 +32,22 @@
 #define WS2812_DMA_CHANNEL 3
 #endif
 
+#ifdef RGB_MATRIX_ENABLE
+#define RGB_DI_PIN B1
+
+// Per the STM32F103x8 Datasheet,
+// Bluepill
+// PB1 has AF (default) TIM3_CH4
+#define WS2812_PWM_DRIVER PWMD3
+#define WS2812_PWM_CHANNEL 4
+// #define WS2812_PWM_PAL_MODE 2
+// Per RM0008, section 13.3.7,
+// Figure 50 shows TIM3_UP on "HW request 3".
+// Table 78 shows TIM3_UP on Channel 3.
+#define WS2812_DMA_STREAM STM32_DMA1_STREAM3
+#define WS2812_DMA_CHANNEL 3
+#endif
+
 #define MATRIX_COL_PINS { B12, B13, B14, B15, A8, A15, A4, A5, A6, A7, B0, B10 }
 #define MATRIX_ROW_PINS { A10, B5, B6, B7, B8 }
 #define UNUSED_PINS

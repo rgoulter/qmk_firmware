@@ -427,7 +427,8 @@ void matrix_scan_user(void) {
 }
 
 void keyboard_post_init_user(void) {
-  rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL + 4);
+  // rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL + 4);
+  rgb_matrix_mode_noeeprom(RGB_MATRIX_CYCLE_PINWHEEL);
 }
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
