@@ -222,7 +222,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //
 // Same as default layer
 [_FN] = LAYOUT(
-    _______,   _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______,   _______,
+    _______,   _______, _______, _______, _______, _______,    _______, _______, _______, RGB_SPD, RGB_SPI,   _______,
     KC_NUM,    KC_P7,   KC_P8,   KC_P9,   _______, _______,    _______, _______, _______, RGB_VAD, RGB_VAI,   _______,
     _______,   KC_P4,   KC_P5,   KC_P6,   _______, _______,    _______, _______, _______, RGB_SAD, RGB_SAI,   _______,
     _______,   KC_P1,   KC_P2,   KC_P3,   _______, _______,    _______, _______, RGB_TOG, RGB_HUD, RGB_HUI,   RGB_MOD,
@@ -442,5 +442,17 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
         default:
             // use the hold function
             return true;
+    }
+}
+
+void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    // Dim the 4 indicator LEDs in the middle of the board.
+    HSV hsv = rgb_matrix_get_hsv();
+    hsv.v /= 4;
+    RGB rgb = hsv_to_rgb(hsv);
+    for (uint8_t i = led_min; i <= led_max; i++) {
+        if (HAS_FLAGS(g_led_config.flags[i], LED_FLAG_INDICATOR)) {
+            rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+        }
     }
 }
