@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q,    KC_W,    KC_F,   KC_P,    KC_B,    XXXXXXX, XXXXXXX, KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,
         GUI_A,   ALT_R,   CTRL_S, SHIFT_T, KC_G,    XXXXXXX, XXXXXXX, KC_M,    SHIFT_N, CTRL_E,  ALT_I,   GUI_O,
         KC_Z,    KC_X,    KC_C,   KC_D,    KC_V,    XXXXXXX, XXXXXXX, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH,
-        XXXXXXX, XXXXXXX, KC_TAB, KC_ESC,  LT2_SPC,      XXXXXXX,     LT1_ENT, KC_BSPC, KC_DEL,  XXXXXXX, TO(_GAMER)
+        RGBLYR , XXXXXXX, KC_TAB, KC_ESC,  LT2_SPC,      XXXXXXX,     LT1_ENT, KC_BSPC, KC_DEL,  XXXXXXX, TO(_GAMER)
     ),
 
     /* Symbols (This layer has mode taps. This draw don't show it for clarity)
@@ -191,9 +191,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* RGB
     ┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓
-    ┃         ┃         ┃         ┃         ┃         ┃ RGBSAT- ┃ RGBSAT+ ┃RGBTOGGLE┃RGBMODE- ┃RGBMODE+ ┃ COLOUR -┃ COLOUR +┃
+    ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃RGBTOGGLE┃RGBMODE- ┃RGBMODE+ ┃ COLOUR -┃ COLOUR +┃
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
-    ┃RGBBRGHT-┃RGBBRGHT+┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
+    ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃RGBBRGHT-┃RGBBRGHT+┃ RGBSAT- ┃ RGBSAT+ ┃
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┻━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
@@ -202,8 +202,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
 
     [_RGB] = LAYOUT_ortho_4x12_1x2uC(
-		_______, _______, _______, _______, _______, RGB_SAD, RGB_SAI, RGB_TOG, RGB_RMOD, RGB_MOD, RGB_HUD, RGB_HUI,
-		RGB_VAD, RGB_VAI, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______,
+		_______, _______, _______, _______, _______, _______, _______, RGB_TOG, RGB_RMOD, RGB_MOD, RGB_HUD, RGB_HUI,
+		_______, _______, _______, _______, _______, _______, _______, _______, RGB_VAD,  RGB_VAI, RGB_SAD, RGB_SAI,
 		_______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______,
 		_______, _______, _______, _______, _______,      _______,     _______, _______,  _______, _______, _______
     )
