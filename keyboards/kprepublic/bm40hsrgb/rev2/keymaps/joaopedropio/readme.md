@@ -13,6 +13,6 @@ $ qmk flash -kb kprepublic/bm40hsrgb/rev2 -km joaopedropio
 
 <div align="center">
   
- ![Complete Diagram](https://raw.githubusercontent.com/joaopedropio/joaopedropio.github.io/2685813e92f6e956600f3dda4e3cf3bb1641c587/bm40_layout_diagram.svg)
+ ![Complete Diagram](https://raw.githubusercontent.com/joaopedropio/joaopedropio.github.io/master/bm40_layout_diagram.svg)
 
 </div>
