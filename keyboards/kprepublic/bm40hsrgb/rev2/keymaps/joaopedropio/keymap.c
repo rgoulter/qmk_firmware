@@ -27,7 +27,10 @@ enum layers {
 };
 
 enum custom_keycodes {
-  TWITCHURL = SAFE_RANGE,
+  TWITCHURL1 = SAFE_RANGE,
+  TWITCHURL2,
+  TWITCHURL3,
+  TWITCHURL4,
   NEW_SAFE_RANGE
 };
 
@@ -133,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* System
     ┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓
-    ┃TWITCHURL┃         ┃         ┃         ┃         ┃         ┃         ┃  RESET  ┃         ┃         ┃         ┃         ┃
+    ┃TWITCHURL┃TWITCHURL┃TWITCHURL┃TWITCHURL┃         ┃         ┃         ┃  RESET  ┃         ┃         ┃         ┃         ┃
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃         ┃
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
@@ -144,7 +147,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
 
 	[_SYSTEM] = LAYOUT_ortho_4x12_1x2uC(
-        TWITCHURL, _______, _______, _______, _______, _______, _______, QK_BOOT, _______, _______, _______, _______,
+        TWITCHURL1, TWITCHURL2, TWITCHURL3, TWITCHURL4, _______, _______, _______, QK_BOOT, _______, _______, _______, _______,
         _______,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______,   _______, _______, _______, _______,      _______,     _______, _______, _______, _______, _______
@@ -221,9 +224,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         is_w_pressed = record->event.pressed;
     }
-    if (keycode == TWITCHURL && record->event.pressed) {
-        SEND_STRING("https://www.twitch.tv/sacyedade");
-        return false;
+    if (record->event.pressed) {
+        switch(keycode) {
+            case TWITCHURL1: SEND_STRING("https://www.twitch.tv/sacyedade segue a live ai, seus lindos"); return false;
+            case TWITCHURL2: SEND_STRING("https://www.twitch.tv/sacyedade sigam a live ai, vlw guys"); return false;
+            case TWITCHURL3: SEND_STRING("https://www.twitch.tv/sacyedade quem puder ajudar aí, fico muito agradecido :D"); return false;
+            case TWITCHURL4: SEND_STRING("https://www.twitch.tv/sacyedade pra quem puder seguir, muito obrigado :D"); return false;
+        }
     }
     return true;
 }

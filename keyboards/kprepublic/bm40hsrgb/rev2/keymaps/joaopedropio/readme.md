@@ -1,4 +1,6 @@
-# My personal keymap
+![My two little beasts](https://i.imgur.com/yVoU9Ba.jpg)
+
+# Keymap explanation
 
 I built this keymap to learn a new layout (which is Colemak-DHm), get used to ortholinear keyboards and eventually switch to a split keyboard like Gergoplex. That's why this layout uses just 36 keys. Heavily inspired by [Miryoku](https://github.com/manna-harbour/qmk_firmware/blob/miryoku/users/manna-harbour_miryoku/miryoku.org#miryoku-) by *manna-harbour*. Every layer has home row mods (especifically, [GACS](https://precondition.github.io/home-row-mods#gacs)) which is highlighted in yellow on the diagram below.
 
