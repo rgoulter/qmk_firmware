@@ -83,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     ┃  GUI/A  ┃  ALT/R  ┃  CTL/S  ┃  SFT/T  ┃    G    ┃         ┃         ┃    M    ┃  SFT/N  ┃  CTL/E  ┃  ALT/I  ┃  GUI/O  ┃
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
-    ┃    Z    ┃    X    ┃    C    ┃    D    ┃    V    ┃         ┃         ┃    K    ┃    H    ┃    ,    ┃    .    ┃    /    ┃
+    ┃    Z    ┃    X    ┃    C    ┃    D    ┃    V    ┃  MAC ←  ┃  MAC →  ┃    K    ┃    H    ┃    ,    ┃    .    ┃    /    ┃
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┻━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     ┃RGB_LAYER┃         ┃   TAB   ┃   ESC   ┃LT2/SPACE┃                   ┃LT1/ENTER┃   BSCP  ┃   DEL   ┃         ┃  GAMER  ┃
     ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_COLEMAK_DMH] = LAYOUT_planck_mit(
         KC_Q,    KC_W,    KC_F,   KC_P,    KC_B,    XXXXXXX, XXXXXXX, KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,
         GUI_A,   ALT_R,   CTRL_S, SHIFT_T, KC_G,    XXXXXXX, XXXXXXX, KC_M,    SHIFT_N, CTRL_E,  ALT_I,   GUI_O,
-        KC_Z,    KC_X,    KC_C,   KC_D,    KC_V,    XXXXXXX, XXXXXXX, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH,
+        KC_Z,    KC_X,    KC_C,   KC_D,    KC_V,    LCTL(KC_LEFT), LCTL(KC_RIGHT), KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH,
         RGBLYR,  XXXXXXX, KC_TAB, KC_ESC,  LT2_SPC,      XXXXXXX,     LT1_ENT, KC_BSPC, KC_DEL,  XXXXXXX, TO(_GAMER)
     ),
 
