@@ -23,7 +23,8 @@ enum layers {
   _SYSTEM,
   _GAMER,
   _GAMER_NUMBERS,
-  _RGB
+  _RGB,
+  _MIDI
 };
 
 enum custom_keycodes {
@@ -81,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓
     ┃    Q    ┃    W    ┃    F    ┃    P    ┃    B    ┃         ┃         ┃    J    ┃    L    ┃    U    ┃    Y    ┃    ;    ┃
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
-    ┃  GUI/A  ┃  ALT/R  ┃  CTL/S  ┃  SFT/T  ┃    G    ┃         ┃         ┃    M    ┃  SFT/N  ┃  CTL/E  ┃  ALT/I  ┃  GUI/O  ┃
+    ┃  GUI/A  ┃  ALT/R  ┃  CTL/S  ┃  SFT/T  ┃    G    ┃  MAC ↓  ┃  MAC ↑  ┃    M    ┃  SFT/N  ┃  CTL/E  ┃  ALT/I  ┃  GUI/O  ┃
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     ┃    Z    ┃    X    ┃    C    ┃    D    ┃    V    ┃  MAC ←  ┃  MAC →  ┃    K    ┃    H    ┃    ,    ┃    .    ┃    /    ┃
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┻━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
@@ -90,10 +91,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
 
 	[_COLEMAK_DMH] = LAYOUT_planck_mit(
-        KC_Q,    KC_W,    KC_F,   KC_P,    KC_B,    XXXXXXX, XXXXXXX, KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,
-        GUI_A,   ALT_R,   CTRL_S, SHIFT_T, KC_G,    XXXXXXX, XXXXXXX, KC_M,    SHIFT_N, CTRL_E,  ALT_I,   GUI_O,
-        KC_Z,    KC_X,    KC_C,   KC_D,    KC_V,    LCTL(KC_LEFT), LCTL(KC_RIGHT), KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH,
-        RGBLYR,  XXXXXXX, KC_TAB, KC_ESC,  LT2_SPC,      XXXXXXX,     LT1_ENT, KC_BSPC, KC_DEL,  XXXXXXX, TO(_GAMER)
+        KC_Q,    KC_W,    KC_F,   KC_P,    KC_B,    XXXXXXX,       XXXXXXX,        KC_J,    KC_L,    KC_U,    KC_Y,      KC_SCLN,
+        GUI_A,   ALT_R,   CTRL_S, SHIFT_T, KC_G,    LCTL(KC_DOWN), LCTL(KC_UP),    KC_M,    SHIFT_N, CTRL_E,  ALT_I,     GUI_O,
+        KC_Z,    KC_X,    KC_C,   KC_D,    KC_V,    LCTL(KC_LEFT), LCTL(KC_RIGHT), KC_K,    KC_H,    KC_COMM, KC_DOT,    KC_SLSH,
+        RGBLYR,  XXXXXXX, KC_TAB, KC_ESC,  LT2_SPC,           XXXXXXX,             LT1_ENT, KC_BSPC, KC_DEL,  TO(_MIDI), TO(_GAMER)
+    ),
+
+    [_MIDI] = LAYOUT_planck_mit(
+        MI_C1,   MI_Cs_1, MI_D_1, MI_Ds_1, MI_E_1, MI_F_1,  MI_Fs_1, MI_G_1,  MI_Gs_1, MI_A_1,  MI_As_1, MI_B_1,
+        MI_F_1,  MI_Fs_1, MI_G_1, MI_Gs_1, MI_A_1, MI_As_1, MI_B_1,  MI_C_2,  MI_Cs_2, MI_D_2,  MI_Ds_2, MI_E_2, 
+        MI_As_1, MI_B_1,  MI_C_2, MI_Cs_2, MI_D_2, MI_Ds_2, MI_E_2,  MI_F_2,  MI_Fs_2, MI_G_2,  MI_Gs_2, MI_A_2,
+        MI_Ds_2, MI_E_2,  MI_F_2, MI_Fs_2, MI_G_2, MI_Gs_2, MI_A_2,  MI_As_2, MI_OCTD, MI_OCTU, TO(_COLEMAK_DMH)
     ),
 
     /* Symbols (This layer has mode taps. This draw don't show it for clarity)
