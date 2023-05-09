@@ -223,6 +223,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 static bool is_w_pressed = false;
 static uint8_t last_layer = _COLEMAK_DMH;
 static bool crazy_layer_shift = false;
+static uint32_t current_rgb_mode = 1;
+static uint32_t gamer_rgb_mode = 22;
+static bool current_rgb_enabled = true;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (keycode == KC_2) {
@@ -245,14 +248,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     uint8_t layer = biton32(state);
+    uint32_t current = rgblight_get_mode();
+    if (current != gamer_rgb_mode) {
+        current_rgb_mode = current;
+        current_rgb_enabled = rgblight_is_enabled();
+    }
     switch (layer) {
         case _GAMER:
         case _GAMER_NUMBERS:
-            rgblight_enable();
-            rgblight_mode(22);
+            rgblight_enable_noeeprom();
+            rgblight_mode_noeeprom(gamer_rgb_mode);
             break;
         default:
-            rgblight_disable();
+            rgblight_mode_noeeprom(current_rgb_mode);
+            if (current_rgb_enabled) {
+                rgblight_enable();
+            } else {
+                rgblight_disable();
+            }
     }
     if (layer == _GAMER && last_layer == _GAMER_NUMBERS && is_w_pressed) {
         unregister_code(KC_2);
