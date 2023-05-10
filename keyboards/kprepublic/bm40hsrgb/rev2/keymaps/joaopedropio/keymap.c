@@ -218,6 +218,9 @@ static bool crazy_layer_shift = false;
 static uint32_t current_rgb_mode = 1;
 static uint32_t gamer_rgb_mode = 22;
 static bool current_rgb_enabled = true;
+static uint16_t current_rgb_hue = 255;
+static uint16_t current_rgb_sat = 255;
+static uint16_t current_rgb_val = 255;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (keycode == KC_2) {
@@ -244,12 +247,16 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     if (current != gamer_rgb_mode) {
         current_rgb_mode = current;
         current_rgb_enabled = rgblight_is_enabled();
+        current_rgb_hue = rgblight_get_hue();
+        current_rgb_sat = rgblight_get_sat();
+        current_rgb_val = rgblight_get_val();
     }
     switch (layer) {
         case _GAMER:
         case _GAMER_NUMBERS:
             rgblight_enable_noeeprom();
             rgblight_mode_noeeprom(gamer_rgb_mode);
+            rgblight_sethsv_noeeprom(255, 255, 255);
             if (is_w_pressed) {
                 unregister_code(KC_2);
                 register_code(KC_W);
@@ -257,12 +264,13 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             }
             break;
         default:
-            rgblight_mode_noeeprom(current_rgb_mode);
             if (current_rgb_enabled) {
                 rgblight_enable();
             } else {
                 rgblight_disable();
             }
+            rgblight_mode_noeeprom(current_rgb_mode);
+            rgblight_sethsv_noeeprom(current_rgb_hue, current_rgb_sat, current_rgb_val);
     }
     last_layer = layer;
     return state;
