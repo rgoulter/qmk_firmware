@@ -23,25 +23,8 @@ enum layers {
   _SYSTEM,
   _GAMER,
   _GAMER_NUMBERS,
-  _RGB
-};
-
-enum combos {
-    COMBO_LCTL,
-    COMBO_LGUI,
-    COMBO_LALT,
-    COMBO_LCTLALT,
-    COMBO_RCTL,
-    COMBO_RGUI,
-    COMBO_RALT,
-    COMBO_RCTLALT,
-    COMBO_LACUTE,
-    COMBO_LTILDE,
-    COMBO_LCIRCUMFLEX,
-    COMBO_RACUTE,
-    COMBO_RTILDE,
-    COMBO_RCIRCUMFLEX,
-    COMBO_LENGTH // nifty trick to avoid manually specifying how many combos you have
+  _RGB,
+  _MIDI
 };
 
 enum custom_keycodes {
@@ -51,6 +34,42 @@ enum custom_keycodes {
   TWITCHURL4,
   NEW_SAFE_RANGE
 };
+
+// Left-hand home row mods - Base Layer
+#define GUI_A   LGUI_T(KC_A)
+#define ALT_R   LALT_T(KC_R)
+#define CTRL_S  LCTL_T(KC_S)
+#define SHIFT_T LSFT_T(KC_T)
+
+// Right-hand home row mods  - Base Layer
+#define SHIFT_N RSFT_T(KC_N)
+#define CTRL_E  RCTL_T(KC_E)
+#define ALT_I   LALT_T(KC_I)
+#define GUI_O   RGUI_T(KC_O)
+
+// Left-hand home row mods - Layer 1
+#define LGUI_1 LGUI_T(KC_1)
+#define LALT_2 LALT_T(KC_2)
+#define LCTL_3 LCTL_T(KC_3)
+#define LSFT_4 LSFT_T(KC_4)
+
+// Right-hand home row mods - Layer 1
+#define LSFT_7 LSFT_T(KC_7)
+#define LCTL_8 LCTL_T(KC_8)
+#define LALT_9 LALT_T(KC_9)
+#define LGUI_0 LGUI_T(KC_0)
+
+// Left-hand home row mods - Layer 2
+#define GUI_F5   LGUI_T(KC_F5)
+#define ALT_F6   LALT_T(KC_F6)
+#define CTRL_F7  LCTL_T(KC_F7)
+#define SHIFT_F8 LSFT_T(KC_F8)
+
+// Right-hand home row mods - Layer 2
+#define S_LBRC RSFT_T(KC_LBRC)
+#define C_RBRC RCTL_T(KC_RBRC)
+#define A_GRV  LALT_T(KC_GRV)
+#define G_QUOT RGUI_T(KC_QUOT)
 
 // Layers
 #define LT2_SPC LT(2,KC_SPC)
@@ -63,19 +82,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓
     ┃    Q    ┃    W    ┃    F    ┃    P    ┃    B    ┃         ┃         ┃    J    ┃    L    ┃    U    ┃    Y    ┃    ;    ┃
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
-    ┃    A    ┃    R    ┃    S    ┃    T    ┃    G    ┃  MAC ↓  ┃  MAC ↑  ┃    M    ┃    N    ┃    E    ┃    I    ┃    O    ┃
+    ┃  GUI/A  ┃  ALT/R  ┃  CTL/S  ┃  SFT/T  ┃    G    ┃  MAC ↓  ┃  MAC ↑  ┃    M    ┃  SFT/N  ┃  CTL/E  ┃  ALT/I  ┃  GUI/O  ┃
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     ┃    Z    ┃    X    ┃    C    ┃    D    ┃    V    ┃  MAC ←  ┃  MAC →  ┃    K    ┃    H    ┃    ,    ┃    .    ┃    /    ┃
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┻━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
-    ┃RGB_LAYER┃   TAB   ┃  ESC    ┃  Shift  ┃LT2/SPACE┃                   ┃LT1/ENTER┃   BSCP  ┃   DEL   ┃         ┃  GAMER  ┃
+    ┃RGB_LAYER┃         ┃   TAB   ┃   ESC   ┃LT2/SPACE┃                   ┃LT1/ENTER┃   BSCP  ┃   DEL   ┃         ┃  GAMER  ┃
     ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
     */
 
-	[_COLEMAK_DMH] = LAYOUT_ortho_4x12_1x2uC(
-        KC_Q,    KC_W,    KC_F,   KC_P,    KC_B,    XXXXXXX,       XXXXXXX,        KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,
-        KC_A,    KC_R,    KC_S,   KC_T,    KC_G,    LGUI(KC_DOWN), LGUI(KC_UP),    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,
-        KC_Z,    KC_X,    KC_C,   KC_D,    KC_V,    LGUI(KC_LEFT), LGUI(KC_RIGHT), KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH,
-        RGBLYR , KC_TAB,  KC_ESC, KC_LSFT, LT2_SPC,           XXXXXXX,             LT1_ENT, KC_BSPC, KC_DEL,  XXXXXXX, TO(_GAMER)
+	[_COLEMAK_DMH] = LAYOUT_planck_mit(
+        KC_Q,    KC_W,    KC_F,   KC_P,    KC_B,    XXXXXXX,       XXXXXXX,        KC_J,    KC_L,    KC_U,    KC_Y,      KC_SCLN,
+        GUI_A,   ALT_R,   CTRL_S, SHIFT_T, KC_G,    LCTL(KC_DOWN), LCTL(KC_UP),    KC_M,    SHIFT_N, CTRL_E,  ALT_I,     GUI_O,
+        KC_Z,    KC_X,    KC_C,   KC_D,    KC_V,    LCTL(KC_LEFT), LCTL(KC_RIGHT), KC_K,    KC_H,    KC_COMM, KC_DOT,    KC_SLSH,
+        RGBLYR,  XXXXXXX, KC_TAB, KC_ESC,  LT2_SPC,           XXXXXXX,             LT1_ENT, KC_BSPC, KC_DEL,  TO(_MIDI), TO(_GAMER)
+    ),
+
+    [_MIDI] = LAYOUT_planck_mit(
+        MI_C1,   MI_Cs_1, MI_D_1, MI_Ds_1, MI_E_1, MI_F_1,  MI_Fs_1, MI_G_1,  MI_Gs_1, MI_A_1,  MI_As_1, MI_B_1,
+        MI_F_1,  MI_Fs_1, MI_G_1, MI_Gs_1, MI_A_1, MI_As_1, MI_B_1,  MI_C_2,  MI_Cs_2, MI_D_2,  MI_Ds_2, MI_E_2, 
+        MI_As_1, MI_B_1,  MI_C_2, MI_Cs_2, MI_D_2, MI_Ds_2, MI_E_2,  MI_F_2,  MI_Fs_2, MI_G_2,  MI_Gs_2, MI_A_2,
+        MI_Ds_2, MI_E_2,  MI_F_2, MI_Fs_2, MI_G_2, MI_Gs_2, MI_A_2,  MI_As_2, MI_OCTD, MI_OCTU, TO(_COLEMAK_DMH)
     ),
 
     /* Symbols (This layer has mode taps. This draw don't show it for clarity)
@@ -90,11 +116,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
     */
 
-    [_SYMBOLS] = LAYOUT_ortho_4x12_1x2uC(
-        KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,     _______, _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
-        KC_1,    KC_2,    KC_3,    KC_4,    KC_5,        _______, _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
-        _______, _______, _______, _______, _______,     _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
-        _______, _______, _______, _______, MO(_SYSTEM),     _______,      _______, _______, _______, _______, _______
+    [_SYMBOLS] = LAYOUT_planck_mit(
+        KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, _______, _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
+        LGUI_1,  LALT_2,  LCTL_3,  LSFT_4,  KC_5,    _______, _______, KC_6,    LSFT_7,  LCTL_8,  LALT_9,  LGUI_0,
+        _______, _______, _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
+        _______, _______, _______, _______, MO(_SYSTEM),  _______,     _______, _______, _______, _______, _______
     ),
 
     /* Programming (This layer has mode taps. This draw don't show it for clarity)
@@ -109,11 +135,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
     */
 
-    [_PROGRAMMING] = LAYOUT_ortho_4x12_1x2uC(
-        KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_PSCR, _______, _______, KC_DQUO,     KC_LCBR, KC_RCBR, KC_BSLS, KC_PIPE,
-        KC_F5,   KC_F6,   KC_F7,   KC_F8,    _______, _______, _______, KC_TILD,     KC_LBRC, KC_RBRC, KC_GRV,  KC_QUOT,
-        KC_F9,   KC_F10,  KC_F11,  KC_F12,   _______, _______, _______, _______,     KC_MINS, KC_UNDS, KC_EQL,  KC_PLUS,
-        _______, _______, _______, _______,  _______,      _______,     MO(_SYSTEM), _______, _______, _______, _______
+    [_PROGRAMMING] = LAYOUT_planck_mit(
+        KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_PSCR, _______, _______, KC_DQUO, KC_LCBR, KC_RCBR, KC_BSLS, KC_PIPE,
+        GUI_F5,  ALT_F6,  CTRL_F7, SHIFT_F8, _______, _______, _______, KC_TILD, S_LBRC,  C_RBRC,  A_GRV,   G_QUOT,
+        KC_F9,   KC_F10,  KC_F11,  KC_F12,   _______, _______, _______, _______, KC_MINS, KC_UNDS, KC_EQL,  KC_PLUS,
+        _______, _______, _______, _______,  _______,      _______,     MO(_SYSTEM),   _______, _______, _______, _______
     ),
 
     /* System
@@ -128,11 +154,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
     */
 
-	[_SYSTEM] = LAYOUT_ortho_4x12_1x2uC(
+	[_SYSTEM] = LAYOUT_planck_mit(
         TWITCHURL1, TWITCHURL2, TWITCHURL3, TWITCHURL4, _______, _______, _______, QK_BOOT, _______, _______, _______, _______,
-        _______,    _______,    _______,    _______,    _______, _______, _______, _______, _______, _______, _______, _______,
-        _______,    _______,    _______,    _______,    _______, _______, _______, _______, _______, _______, _______, _______,
-        _______,    _______,    _______,    _______,    _______,      _______,     _______, _______, _______, _______, _______
+        _______,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
 
@@ -144,15 +170,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     ┃  SHIFT  ┃    Z    ┃    X    ┃    C    ┃    V    ┃    B    ┃    N    ┃    M    ┃    ,    ┃    .    ┃    /    ┃  ENTER  ┃
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┻━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
-    ┃   CTRL  ┃         ┃         ┃  ALT    ┃   MO(5) ┃       SPACE       ┃         ┃         ┃         ┃         ┃ COLEMAK ┃
+    ┃   CTRL  ┃         ┃         ┃  ALT    ┃   MO(5) ┃       SPACE       ┃         ┃         ┃         ┃         ┃   BASE  ┃
     ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
     */
 
-	[_GAMER] = LAYOUT_ortho_4x12_1x2uC(
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,               KC_T, KC_Y, KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-        KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,               KC_G, KC_H, KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,               KC_B, KC_N, KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
-        KC_LCTL, XXXXXXX, XXXXXXX, KC_LALT, MO(_GAMER_NUMBERS),   KC_SPC,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TO(_COLEMAK_DMH)
+	[_GAMER] = LAYOUT_planck_mit(
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,  KC_T,  KC_Y, KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+        KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,  KC_G,  KC_H, KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,  KC_B,  KC_N, KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
+        KC_LCTL, XXXXXXX, XXXXXXX, KC_LALT, MO(_GAMER_NUMBERS),    KC_SPC,  XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX,  TO(_COLEMAK_DMH)
     ),
 
     /* Gamer Numbers
@@ -167,7 +193,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
     */
 
-	[_GAMER_NUMBERS] = LAYOUT_ortho_4x12_1x2uC(
+	[_GAMER_NUMBERS] = LAYOUT_planck_mit(
         _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -186,7 +212,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
     */
 
-    [_RGB] = LAYOUT_ortho_4x12_1x2uC(
+    [_RGB] = LAYOUT_planck_mit(
 		_______, _______, _______, _______, _______, _______, _______, RGB_TOG, RGB_RMOD, RGB_MOD, RGB_HUD, RGB_HUI,
 		_______, _______, _______, _______, _______, _______, _______, _______, RGB_VAD,  RGB_VAI, RGB_SAD, RGB_SAI,
 		_______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______,
@@ -194,57 +220,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-uint16_t COMBO_LEN = COMBO_LENGTH; // nifty trick continued
-
-// define keys that make up combos
-// home row combos - left hand combos
-const uint16_t PROGMEM ts_combo[] = {KC_T, KC_S, COMBO_END};
-const uint16_t PROGMEM tr_combo[] = {KC_T, KC_R, COMBO_END};
-const uint16_t PROGMEM sr_combo[] = {KC_S, KC_R, COMBO_END};
-const uint16_t PROGMEM tsr_combo[] = {KC_T, KC_S, KC_R, COMBO_END};
-
-// home row combos - right-hand combos
-const uint16_t PROGMEM ne_combo[] = {KC_N, KC_E, COMBO_END};
-const uint16_t PROGMEM ni_combo[] = {KC_N, KC_I, COMBO_END};
-const uint16_t PROGMEM ei_combo[] = {KC_E, KC_I, COMBO_END};
-const uint16_t PROGMEM nei_combo[] = {KC_N, KC_E, KC_I, COMBO_END};
-
-// accentuation - left hand combos
-const uint16_t PROGMEM lu_combo[] = {KC_L, KC_U, COMBO_END};
-const uint16_t PROGMEM ly_combo[] = {KC_L, KC_Y, COMBO_END};
-const uint16_t PROGMEM uy_combo[] = {KC_U, KC_Y, COMBO_END};
-
-// accentuation - right-hand combos
-const uint16_t PROGMEM pf_combo[] = {KC_P, KC_F, COMBO_END};
-const uint16_t PROGMEM pw_combo[] = {KC_P, KC_W, COMBO_END};
-const uint16_t PROGMEM fw_combo[] = {KC_F, KC_W, COMBO_END};
-
-// map combo names to their keys and the key they trigger
-combo_t key_combos[] = {
-    // home row combos
-    [COMBO_LCTL] = COMBO(ts_combo, KC_LCTL),
-    [COMBO_LALT] = COMBO(tr_combo, KC_LALT),
-    [COMBO_LGUI] = COMBO(sr_combo, KC_LGUI),
-    [COMBO_LCTLALT] = COMBO(tsr_combo, LCTL(KC_LALT)),
-    [COMBO_RCTL] = COMBO(ne_combo, KC_LCTL),
-    [COMBO_RALT] = COMBO(ni_combo, KC_LALT),
-    [COMBO_RGUI] = COMBO(ei_combo, KC_LGUI),
-    [COMBO_RCTLALT] = COMBO(nei_combo, LCTL(KC_LALT)),
-
-    // accentuation
-    [COMBO_RACUTE] = COMBO(lu_combo, KC_QUOT),
-    [COMBO_RTILDE] = COMBO(uy_combo, KC_TILD),
-    [COMBO_RCIRCUMFLEX] = COMBO(ly_combo, KC_CIRC),
-    [COMBO_LACUTE] = COMBO(pf_combo, KC_QUOT),
-    [COMBO_LTILDE] = COMBO(fw_combo, KC_TILD),
-    [COMBO_LCIRCUMFLEX] = COMBO(pw_combo, KC_CIRC)
-};
-
 static bool is_w_pressed = false;
 static uint8_t last_layer = _COLEMAK_DMH;
 static bool crazy_layer_shift = false;
 static uint32_t current_rgb_mode = 1;
-static uint32_t gamer_rgb_mode = 14;
+static uint32_t gamer_rgb_mode = 22;
 static bool current_rgb_enabled = true;
 static uint16_t current_rgb_hue = 255;
 static uint16_t current_rgb_sat = 255;
@@ -252,7 +232,7 @@ static uint16_t current_rgb_val = 255;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (keycode == KC_2) {
-        if (crazy_layer_shift && !record->event.pressed) {
+        if (crazy_layer_shift && record->event.pressed == false) {
             unregister_code(KC_W);
             crazy_layer_shift = false;
         }
@@ -284,12 +264,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         case _GAMER_NUMBERS:
             rgblight_enable_noeeprom();
             rgblight_mode_noeeprom(gamer_rgb_mode);
-            rgblight_sethsv_noeeprom(255, 255, 80);
-            if (is_w_pressed) {
-                unregister_code(KC_2);
-                register_code(KC_W);
-                crazy_layer_shift = true;
-            }
+            rgblight_sethsv_noeeprom(255, 255, 255);
             break;
         default:
             if (current_rgb_enabled) {
@@ -299,6 +274,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             }
             rgblight_mode_noeeprom(current_rgb_mode);
             rgblight_sethsv_noeeprom(current_rgb_hue, current_rgb_sat, current_rgb_val);
+    }
+    if (layer == _GAMER && last_layer == _GAMER_NUMBERS && is_w_pressed) {
+        unregister_code(KC_2);
+        register_code(KC_W);
+        crazy_layer_shift = true;
     }
     last_layer = layer;
     return state;
