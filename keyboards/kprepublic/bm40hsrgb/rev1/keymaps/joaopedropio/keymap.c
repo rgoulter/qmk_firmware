@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
     ┃    Z    ┃    X    ┃    C    ┃    D    ┃    V    ┃  MAC ←  ┃  MAC →  ┃    K    ┃    H    ┃    ,    ┃    .    ┃    /    ┃
     ┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┻━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫
-    ┃RGB_LAYER┃   TAB   ┃  ESC    ┃  Shift  ┃LT2/SPACE┃                   ┃LT1/ENTER┃   BSCP  ┃   DEL   ┃         ┃  GAMER  ┃
+    ┃RGB_LAYER┃         ┃  ESC    ┃  Shift  ┃LT2/SPACE┃                   ┃LT1/ENTER┃   BSCP  ┃   TAB   ┃         ┃  GAMER  ┃
     ┗━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┻━━━━━━━━━┛
     */
 
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q,    KC_W,    KC_F,   KC_P,    KC_B,    XXXXXXX,       XXXXXXX,        KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,
         KC_A,    KC_R,    KC_S,   KC_T,    KC_G,    LGUI(KC_DOWN), LGUI(KC_UP),    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,
         KC_Z,    KC_X,    KC_C,   KC_D,    KC_V,    LGUI(KC_LEFT), LGUI(KC_RIGHT), KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH,
-        RGBLYR , KC_TAB,  KC_ESC, KC_LSFT, LT2_SPC,           XXXXXXX,             LT1_ENT, KC_BSPC, KC_DEL,  XXXXXXX, TO(_GAMER)
+        RGBLYR , XXXXXXX, KC_ESC, KC_LSFT, LT2_SPC,           XXXXXXX,             LT1_ENT, KC_BSPC, KC_TAB,  XXXXXXX, TO(_GAMER)
     ),
 
     /* Symbols (This layer has mode taps. This draw don't show it for clarity)
