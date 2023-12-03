@@ -1,0 +1,9 @@
+{
+    "features": {
+        "encoder": true,
+        "haptic": true,
+        "oled": true,
+        "rgb_matrix": true,
+        "solenoid": true
+    }
+}
