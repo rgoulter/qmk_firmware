@@ -1,0 +1,9 @@
+COMBO_ENABLE = yes
+
+LEADER_ENABLE = yes
+
+DYNAMIC_MACRO_ENABLE = yes
+
+CORNER_RESET_ENABLE = yes
+
+USER_NAME = rgoulter
