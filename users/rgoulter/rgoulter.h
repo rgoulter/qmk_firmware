@@ -186,4 +186,4 @@ extern const uint16_t PROGMEM dsk_lower_lead_combo[];
 #endif
 
 // Used to change layer in keymap
-void default_layer_set_keymap(uint8_t code) {}
+void default_layer_set_keymap(uint8_t code);
