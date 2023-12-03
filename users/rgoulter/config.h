@@ -1,0 +1,8 @@
+#pragma once
+
+#define COMBO_ONLY_FROM_LAYER 0
+
+#define LEADER_PER_KEY_TIMING
+#define LEADER_NO_TIMEOUT
+
+#define USER_COMBO_EVENT_COUNT 3
