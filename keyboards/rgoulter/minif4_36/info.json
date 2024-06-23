@@ -163,7 +163,7 @@
             "pixel_rain": false,
             "pixel_flow": false,
             "pixel_fractal": false,
-            "typing_heatmap": false,
+            "typing_heatmap": true,
             "digital_rain": false,
             "solid_reactive_simple": false,
             "solid_reactive": false,
@@ -240,7 +240,17 @@
         "enabled": true,
         "soft_serial_pin": "B6",
         "transport": {
-            "sync_matrix_state": true
+            "sync": {
+                "activity": true,
+                "detected_os": true,
+                "haptic": true,
+                "indicators": true,
+                "layer_state": true,
+                "matrix_state": true,
+                "modifiers": true,
+                "oled": true,
+                "wpm": true
+            }
         }
     }
 }
