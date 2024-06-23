@@ -5,6 +5,13 @@
 char      quarter_count = 0;
 host_os_t current_os    = _OS_LINUX;
 
+#ifdef RGB_MATRIX_ENABLE
+uint8_t  old_mode               = 0;
+HSV      old_hsv                = {HSV_OFF};
+uint32_t rgb_matrix_blink_timer = 0;
+bool     blinking_active        = false;
+#endif
+
 #ifdef CORNER_RESET_ENABLE
 __attribute__((weak)) keypos_t boot_keypositions[4] = {
     {.col = 0, .row = 0},
@@ -106,11 +113,78 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 }
 #endif
 
+#ifdef RGB_MATRIX_ENABLE
+__attribute__((weak)) bool rgb_matrix_indicators_keymap(void) {
+    return true;
+}
+
+void rgb_matrix_blink_start(void) {
+    /* impl. note: in order to get the 'blink' to work across split keyboard,
+     *  save the old mode & hsv, then set to solid white.
+     * The old mode & hsv are then restored after some time,
+     *  in the rgb_matrix_indicators_user callback.
+     */
+    old_mode = rgb_matrix_get_mode();
+    old_hsv  = rgb_matrix_get_hsv();
+
+    rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+    rgb_matrix_sethsv_noeeprom(HSV_WHITE);
+
+    rgb_matrix_blink_timer = timer_read32();
+    blinking_active        = true;
+}
+
+void rgb_matrix_blink_end(void) {
+    rgb_matrix_mode_noeeprom(old_mode);
+    rgb_matrix_sethsv_noeeprom(old_hsv.h, old_hsv.s, old_hsv.v);
+
+    blinking_active = false;
+}
+
+bool rgb_matrix_indicators_user(void) {
+    if (!rgb_matrix_indicators_keymap()) {
+        return false;
+    }
+
+    /* bug: split keyboards: this 'blinks' on the master side only;
+     * the slave side doesn't process the blink.
+     * Not sure how to kludge this.
+     */
+    if (blinking_active && timer_elapsed32(rgb_matrix_blink_timer) >= RGB_MATRIX_BLINK_INTERVAL) {
+        rgb_matrix_blink_end();
+    }
+
+    return true;
+}
+
+__attribute__((weak)) bool rgb_matrix_indicators_advanced_keymap(uint8_t led_min, uint8_t led_max) {
+    return true;
+}
+
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    if (!rgb_matrix_indicators_advanced_keymap(led_min, led_max)) {
+        return false;
+    }
+
+    return true;
+}
+#endif
+
 __attribute__((weak)) void default_layer_set_keymap(uint8_t code) {}
 
 #ifdef LEADER_ENABLE
+__attribute__((weak)) void leader_end_notify(void) {
+#    ifdef HAPTIC_ENABLE
+    haptic_play();
+#    endif
+#    ifdef RGB_MATRIX_ENABLE
+    rgb_matrix_blink_start();
+#    endif
+}
+
 __attribute__((weak)) void leader_end_keymap(void) {}
 void                       leader_end_user(void) {
+    bool notify = true;
     if (leader_sequence_two_keys(KC_Q, KC_B)) { // mnemonic: QMK Boot
         reset_keyboard();
 #    ifdef COMMAND_ENABLE
@@ -190,8 +264,14 @@ void                       leader_end_user(void) {
         rgb_matrix_disable_noeeprom();
     } else if (leader_sequence_two_keys(KC_R, KC_E)) { // mnemonic: RGB Enable
         rgb_matrix_enable_noeeprom();
+#        ifdef ENABLE_RGB_MATRIX_TYPING_HEATMAP
+    } else if (leader_sequence_two_keys(KC_R, KC_H)) { // mnemonic: RGB Heatmap
+        rgb_matrix_mode_noeeprom(RGB_MATRIX_TYPING_HEATMAP);
+#        endif
+#        ifdef ENABLE_RGB_MATRIX_JELLYBEAN_RAINDROPS
     } else if (leader_sequence_two_keys(KC_R, KC_J)) { // mnemonic: RGB Jellybean
         rgb_matrix_mode_noeeprom(RGB_MATRIX_JELLYBEAN_RAINDROPS);
+#        endif
     } else if (leader_sequence_two_keys(KC_R, KC_N)) { // mnemonic: RGB Next effect
         rgb_matrix_step_noeeprom();
     } else if (leader_sequence_two_keys(KC_R, KC_P)) { // mnemonic: RGB Previous effect
@@ -211,6 +291,11 @@ void                       leader_end_user(void) {
                 tap_code16(CODE16_WIN_DESKTOP_LOCK);
                 break;
         }
+    } else {
+        notify = false;
+    }
+    if (notify) {
+        leader_end_notify();
     }
     leader_end_keymap();
 }
