@@ -343,7 +343,7 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 }
 
 #ifdef RGB_MATRIX_ENABLE
-bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+bool rgb_matrix_indicators_advanced_keymap(uint8_t led_min, uint8_t led_max) {
     // Dim the 4 indicator LEDs in the middle of the board.
     HSV hsv = rgb_matrix_get_hsv();
     hsv.v /= 4;
