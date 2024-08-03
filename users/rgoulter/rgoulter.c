@@ -114,11 +114,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 #endif
 
 #ifdef RGB_MATRIX_ENABLE
-__attribute__((weak)) bool rgb_matrix_indicators_keymap(void) {
-    return true;
-}
-
-void rgb_matrix_blink_start(void) {
+void rgb_matrix_blink_start(bool succeeded) {
     /* impl. note: in order to get the 'blink' to work across split keyboard,
      *  save the old mode & hsv, then set to solid white.
      * The old mode & hsv are then restored after some time,
@@ -128,7 +124,11 @@ void rgb_matrix_blink_start(void) {
     old_hsv  = rgb_matrix_get_hsv();
 
     rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
-    rgb_matrix_sethsv_noeeprom(HSV_WHITE);
+    if (succeeded) {
+        rgb_matrix_sethsv_noeeprom(HSV_WHITE);
+    } else {
+        rgb_matrix_sethsv_noeeprom(HSV_RED);
+    }
 
     rgb_matrix_blink_timer = timer_read32();
     blinking_active        = true;
@@ -141,19 +141,24 @@ void rgb_matrix_blink_end(void) {
     blinking_active = false;
 }
 
+__attribute__((weak)) void housekeeping_task_keymap(void) {}
+
+void housekeeping_task_user(void) {
+    housekeeping_task_keymap();
+
+    if (blinking_active && timer_elapsed32(rgb_matrix_blink_timer) >= RGB_MATRIX_BLINK_INTERVAL) {
+        rgb_matrix_blink_end();
+    }
+}
+
+__attribute__((weak)) bool rgb_matrix_indicators_keymap(void) {
+    return true;
+}
+
 bool rgb_matrix_indicators_user(void) {
     if (!rgb_matrix_indicators_keymap()) {
         return false;
     }
-
-    /* bug: split keyboards: this 'blinks' on the master side only;
-     * the slave side doesn't process the blink.
-     * Not sure how to kludge this.
-     */
-    if (blinking_active && timer_elapsed32(rgb_matrix_blink_timer) >= RGB_MATRIX_BLINK_INTERVAL) {
-        rgb_matrix_blink_end();
-    }
-
     return true;
 }
 
@@ -173,12 +178,14 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 __attribute__((weak)) void default_layer_set_keymap(uint8_t code) {}
 
 #ifdef LEADER_ENABLE
-__attribute__((weak)) void leader_end_notify(void) {
+__attribute__((weak)) void leader_end_notify(bool succeeded) {
 #    ifdef HAPTIC_ENABLE
-    haptic_play();
+    if (succeeded && haptic_get_enable()) {
+        haptic_play();
+    }
 #    endif
 #    ifdef RGB_MATRIX_ENABLE
-    rgb_matrix_blink_start();
+    rgb_matrix_blink_start(succeeded);
 #    endif
 }
 
@@ -294,9 +301,7 @@ void                       leader_end_user(void) {
     } else {
         notify = false;
     }
-    if (notify) {
-        leader_end_notify();
-    }
     leader_end_keymap();
+    leader_end_notify(notify);
 }
 #endif
