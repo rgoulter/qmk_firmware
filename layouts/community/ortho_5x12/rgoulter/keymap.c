@@ -325,6 +325,12 @@ void keyboard_post_init_user(void) {
 #endif
 #ifdef RGB_MATRIX_ENABLE
     rgb_matrix_mode_noeeprom(RGB_MATRIX_CYCLE_PINWHEEL);
+
+    /* Certain animations (e.g. jellybean) don't work well with the
+     *  rgb_matrix_indicators_advanced_keymap callback;
+     *  so, limit RGB animations to non-indicators.
+     */
+    rgb_matrix_set_flags_noeeprom(LED_FLAG_ALL ^ LED_FLAG_INDICATOR);
 #endif
 }
 
